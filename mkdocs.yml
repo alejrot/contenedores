@@ -1,0 +1,166 @@
+site_name: Contenedores
+
+
+
+# site_url: https://marcelomarot.github.io/markdown-mkdocs/
+
+# # Repositorio
+# repo_url: https://github.com/MarceloMarot/markdown-mkdocs
+# repo_name: markdown-mkdocs
+# edit_uri: edit/master/docs/
+
+
+
+theme: 
+  name: material
+  # favicon: images/favicon.png   # no anda
+  icon:
+    #icono de pagina
+    logo: simple/markdown  
+    # logo: bootstrap/activity  # icono local 
+    # iconos de avance y retroceso 
+    previous: fontawesome/solid/angle-left
+    next: fontawesome/solid/angle-right
+    # Icono de repositorio
+    repo: fontawesome/brands/github
+
+
+ 
+  features:
+    # codigo y pestañas
+    - content.tabs.link         # pestañas sincronizadas
+    - content.code.copy         # botón de copia 
+    - content.code.annotate     # botones de anotaciones emergentes
+    # opciones de búsqueda
+    - search.suggest      # sugerencias en caja de búsqueda
+    - search.highlight  # remarcado en página
+    - search.share      # link 'compartir' en caja de búsqueda
+    # - search.exclude
+    # opciones de navegación
+    - navigation.instant
+    - navigation.instant.progress   # progreso de carga (conexiones lentas)
+    - navigation.tracking
+    # pestañas de contenido
+    - navigation.tabs
+    # - navigation.tabs.sticky
+    - navigation.sections
+    # - navigation.expand
+    # - navigation.prune 
+    # - navigation.indexes 
+    - toc.follow
+    # - toc.integrate   # integra indice derecho (secciones) adentro del izquierdo (rutas)
+    - navigation.top  # boton emergente para volver al inicio  - aparece al intentar subir con el scroll
+
+    # Pie de pagina
+    - navigation.footer
+
+    # header y anuncios
+    - header.autohide
+    - announce.dismiss
+
+    # acciones sobre repositorio
+    # - content.action.edit
+    # - content.action.view
+
+
+  # soporte de idiomas
+  language: es    # Idioma predefinido
+  # direction: ltr
+
+
+  # Opciones de temas y colores
+  palette: 
+    # Cambio de paleta al modo claro
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/lightbulb 
+        name: Cambia al modo oscuro 
+      # primary: indigo
+      # accent: blue
+      primary: red
+      accent: orange
+    # Cambio de paleta al modo oscuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/lightbulb-outline    
+        name: Cambia al modo claro      # mensaje
+      primary: red
+      accent: orange
+
+markdown_extensions: 
+  # "advertencias"
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  # anotaciones
+  - attr_list
+  - md_in_html
+  - pymdownx.superfences
+  # grids
+  - attr_list
+  - md_in_html
+  # emojis - iconos
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      # Iconos LOCALES
+      # options:
+      #   custom_icons:
+      #     - overrides/.icons    # Carpeta local - ruta desde directorio raiz del proyecto
+  # pestañas de contenido
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  # matematica
+  - pymdownx.arithmatex:
+      generic: true
+  # Tablas (activado por defecto)
+  - tables
+  #bloques codigo
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite   # habilita remarcado de renglones
+  - pymdownx.snippets       # habilita importar código de otros archivos
+  - pymdownx.superfences    # habilita anidado de otros contenidos
+  # notas al pie
+  - footnotes
+  # formateo
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+
+
+
+
+plugins:
+  # lectura tablas desde archivo
+  # - search
+  # - table-reader
+  # privacidad - hace copia local de contenidos remotos
+  - privacy
+  # busqueda
+  - search
+
+
+
+
+
+# extra:
+#   homepage: https://marcelomarot.github.io/markdown-mkdocs/
+
+
+
+
+
+
+# nav:
+  # - 
+
+

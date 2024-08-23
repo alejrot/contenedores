@@ -126,7 +126,7 @@ Elimina el contenedor indicado
 
 ## Puertos y Port Mapping
 
-Cada contenedor tiene un número de puerto asignado, eso le permite la comunicación con otros contenedores y aplicaciones usando sockets. Dos contenedores activos pueden tener un mismo número de puerto. Para evitar ambigüedades y poder comunicarse con ambos los puertos de los contenedores se pueden “mapear” a distintos  puertos del anfitrión
+Cada contenedor tiene un número de puerto asignado, eso le permite la comunicación con otros contenedores y aplicaciones usando sockets. Dos contenedores activos pueden tener un mismo número de puerto. Para evitar ambigüedades y poder comunicarse con ambos los puertos de los contenedores se pueden “mapear” a distintos  puertos del sistema anfitrión
 
 
     docker create  -p <puerto_anfitrion>:<puerto_contenedor> --name <nombre_contenedor> <imagen_base>
@@ -194,18 +194,21 @@ Para que los contenedores funcionen es necesario que las redes que utilizan haya
 
 El archivo Dockerfile nos permite crear nuevas imágenes en base a una preexistente donde se incluyan nuevos comandos y aplicaciones. A este archivo no se le puede cambiar el nombre.
 
+
+### Sintaxis
+
 La sintaxis es la siguiente:
 
 ```dockerfile
-FROM <imagen_base>:<versión>		(qué imagen de Docker será afectada)
+FROM <imagen_base>:<versión>		# (qué imagen de Docker será afectada)
 
-RUN mkdir - p <ruta_destino>		(se crea el directorio de destino)(tipicamente /home/app si es contenedor con Linux)
+RUN mkdir -p <ruta_destino>		# (se crea el directorio de destino)(tipicamente /home/app si es contenedor con Linux)
 
-RUN <comandos_instalacion_aplicacion>  (opcional)
+RUN <comandos_instalacion_aplicacion>  # (opcional)
 
-COPY . <ruta_destino>		(completar con la ruta que corresponda)
+COPY . <ruta_destino>		# (completar con la ruta que corresponda)
 
-EXPOSE <numero_puerto>			(indica el puerto del contenedor)
+EXPOSE <numero_puerto>			# (indica el puerto del contenedor)
 
 CMD [ <comando> , <ruta_destino/ejecutable> ]
 ```
@@ -225,7 +228,7 @@ CMD [<comando> , <ejecutable>]
 
 
 
-## Nuevas imágenes modificadas
+### Nuevas imágenes modificadas
 
     docker build -t <nombre_aplicacion>:<numero_version>  <ruta_a_archivos>
 
@@ -272,7 +275,7 @@ volumes:
 
 ```
 
-## Creación Automática
+### Creación Automática
 
     docker compose up
 
@@ -285,7 +288,7 @@ Elimina los contenedores diseñados con el archivo `docker-compose.yml`. Tambié
 
 
 
-## Volumes
+### Volumes
 
 Definir los volúmenes ( volumes ) previene la eliminación de datos internos de los contenedores cuando se eliminan estos últimos. Los datos se mantienen fuera del contenedor, en el directorio del sistema anfitrión que se montó (es decir el volumen elegido). Estos datos pueden ser registros del funcionamiento del contenedor, bases de datos creadas en la ejecución, rutinas de lenguajes interpretados por el contenedor que se requiere poder actualizar desde fuera,etc.
 
