@@ -4,7 +4,7 @@
 Las imágenes son los ejecutables compactados ,los cuales pueden incorporar intérpretes de lenguajes, bibliotecas, frameworks, etc.
 
 
-Los contenedores son los objetos que "rodean" las imágenes y que incorporan las configuraciones, rutinas de programa, etc.
+Los contenedores son los objetos que "rodean" las imágenes y que incorporan las configuraciones, rutinas de programa, etc. 
 
 ## Imágenes
 
@@ -16,7 +16,6 @@ Indica qué imágenes están descargadas en la PC y sus características básica
 podman images
 ```
 
-
 !!! info "DockerHub"
 
     En [DockerHub](https://hub.docker.com/) se puede consultar qué imágenes hay disponibles e indica el comando completo para descargarlas. 
@@ -24,15 +23,13 @@ podman images
 
 !!! info "Fuentes de imágenes"
 
-    - [Fedora Project](registry.fedoraproject.org/)
-    - [Red Hat](registry.access.redhat.com/)
     - [Docker](docker.io/)
+    - [Fedora Project](registry.fedoraproject.org/)
+    - [Red Hat](registry.access.redhat.com/) (Es de pago)
     - [Quay](quay.io/)
 
 
-
 ### Descarga
-
 
 Descarga la última versión disponible de la imagen indicada desde DockerHub y la etiqueta como latest.
 
@@ -44,7 +41,6 @@ Descarga la versión indicada de la imagen  y la etiqueta numerada.Si no se indi
 ```bash title="Descargar imagen - version específica"
 podman pull nombre_imagen:numero_version
 ```
-
 
 !!! warning "Opciones de imagen"
 
@@ -90,12 +86,42 @@ podman start id_contenedor
 podman start nombre_contenedor
 ```
 
+Agregando las opciones `-a` (adjuntar) e `-i` (interactivo) se puede ver el log en consola y ejecutar comandos:
+
+```bash title="Arranque - interactivo"
+podman start -a -i nombre_contenedor
+```
+Las opciones se pueden indicar juntas:
+
+```bash title="Arranque - interactivo"
+podman start -ai nombre_contenedor      
+```
+
+
 ### Detención
 
 Detiene al contenedor indicado:
 ```bash title="Detención - por nombre"
 podman stop nombre_contenedor
 ```
+
+!!! info "Señales de parada"
+
+    En Linux la orden `stop` envía la señal del sistema SIGTERM. Si el contenedor no se detuvo en 10 segundos (valor predeterminado) Podman le envía la señal SIGKILL, lo cual equivale a lanzar la orden `kill`:
+
+    ```bash title="Detención - SIGKILL"
+    podman kill nombre_contenedor
+    ```
+
+!!! tip "Otras señales"
+    Cabe señalar que el comando kill permite mandar otras señales diferentes con ayuda de la opción `--signal`:
+
+    ```bash title="Señales específicas"
+    podman kill --signal="SIGUP" nombre_contenedor
+    ```
+    En el ejemplo, la señal SIGUP hace que la aplicación relea sus archivos de configuración, siempre y cuando la aplicación lo soporte.
+
+
 
 ### Listado
 
@@ -117,10 +143,12 @@ Elimina el contenedor indicado
 podman rm nombre_contenedor
 ```
 
-### Permisos de ejecución
 
 
-A diferencia de Docker, Podman no ejecuta sus contenedores con permisos de administrador. Como contrapartida, requiere que el usuario actual tenga permisos para ejecutar cada contenedor. Para liberar los contenedores a éstos de los crea con la opción: `--security-opt label=disable`.
+### Permisos de ejecución (REVISAR)
+
+
+A diferencia de Docker, Podman no ejecuta sus contenedores con permisos de administrador. Como contrapartida, requiere que el usuario actual tenga permisos para ejecutar cada contenedor. Para liberar los contenedores a éstos se los crea con la opción: `--security-opt label=disable`.
 
 De esta forma, la creación del contenedor queda como:
 
@@ -195,6 +223,23 @@ podman logs --follow nombre_contenedor
     Se sale del *modo live* con ++ctrl++ + ++c++
 
 
+### Inspeccionar metadatos
+
+
+Los metadatos se leen con el comando `inspect`:
+
+```bash  title="inspeccionar"
+podman inspect nombre_contenedor
+```
+
+La metadata se devuelve como objeto JSON (pares clave - valor). Si se busca solamente un parámetro particular se usa la opción `--format`:
+
+```bash  title="inspeccionar - parametro IP"
+podman inspect  --format='{{.NetworkSettings.IPAddress}}' nombre_contenedor
+```
+
+
+
 ### Run
 
 
@@ -208,22 +253,28 @@ Esta instrucción no devuelve el control al usuario a menos que termine o se can
 
 Uso básico:
 
-```bash
+```bash title="run"
 podman run nombre_imagen
 ```
 
-La opción `-d` (*dettached*) le devuelve el control al usuario de inmediato.
+La opción `-d` (*dettached*) le devuelve el control al usuario de inmediato. El contenedor seguirá funcionando en segundo plano
 
-```bash
+```bash title="run - segundo plano"
 podman run -d nombre_imagen
 ```
 
-Lo mismo pero añadiendo el port mapping:
-```bash
+Lo mismo pero añadiendo el *port mapping*:
+
+```bash title="run - port mapping"
 podman run --name nombre_contenedor -p puerto_anfitrion:puerto_imagen -d nombre_imagen
 ```
 
+La opción `--rm` permite crear contenedores descartables. Éstos son eliminados automáticamente cuando se detienen. 
 
+
+```bash title="run - contenedores descartables"
+podman run --rm nombre_imagen
+```
 
 
 
@@ -233,18 +284,18 @@ Los contenedores se interconectan mediante redes puente (bridge).
 
 Enumera las redes creadas por los contenedores:
 
-```bash
+```bash title="Redes - listar"
 podman network ls
 ```
 
 Crea una nueva red del tipo *bridge* (puente) con el nombre especificado.
 
-```bash
+```bash title="Redes - crear"
 podman network create nombre_red
 ```
 
 Elimina la red indicada:
-```bash
+```bash title="Redes - eliminar"
 podman network rm nombre_red
 ```
 
@@ -257,7 +308,7 @@ podman network rm nombre_red
 
 Crea un contenedor que incluye conexión a la red puente indicada:
 
-```bash
+```bash title="Contenedores - conectado a red"
 podman create [...]  --network nombre_red  [...]
 ```
 

@@ -62,7 +62,7 @@ Docker Desktop
 
 Estos comandos se ejecutan en la terminal (recomendado: Bash). Hay que asegurarse primero de que Docker Desktop está no sólo inicializado sino también corriendo.
 
-## Imágenes
+<!-- ## Imágenes
 
 
 Indica qué imágenes están descargadas en la PC y sus características básicas: versión, identificador, espacio ocupado, etc.
@@ -85,10 +85,10 @@ En docker hub se puede consultar qué imágenes hay disponibles e indica el coma
 
 Elimina del disco la imagen especificada:
 
-    docker image rm <nombre-imagen>:<número-version>
+    docker image rm <nombre-imagen>:<número-version> -->
 
 
-## Contenedores
+<!-- ## Contenedores
 
 
     docker create <imagen_base>
@@ -122,9 +122,9 @@ Indica todos los contenedores existentes
 
     docker rm <nombre_contenedor>
 
-Elimina el contenedor indicado
+Elimina el contenedor indicado -->
 
-## Puertos y Port Mapping
+<!-- ## Puertos y Port Mapping
 
 Cada contenedor tiene un número de puerto asignado, eso le permite la comunicación con otros contenedores y aplicaciones usando sockets. Dos contenedores activos pueden tener un mismo número de puerto. Para evitar ambigüedades y poder comunicarse con ambos los puertos de los contenedores se pueden “mapear” a distintos  puertos del sistema anfitrión
 
@@ -156,18 +156,18 @@ Lo mismo que antes, pero la opción -d (dettached) devuelve el control al usuari
 
     docker run --name <nombre_contenedor> -p <puerto_anfitrion>:<puerto_contenedor> -d <imagen_base>
 
-Lo mismo pero añadiendo el port mapping.
+Lo mismo pero añadiendo el port mapping. -->
 
 
-## Variables de Entorno
+<!-- ## Variables de Entorno
 
     docker create  […]  -e [...]
 
-Crea el container con las variables de entorno ya configuradas (opcion -e)
+Crea el container con las variables de entorno ya configuradas (opcion -e) -->
 
 
 
-## Redes en Docker
+<!-- ## Redes en Docker
 
 Es posible interconectar los contenedores mediante redes puente (bridge) creadas en Docker.
 
@@ -187,7 +187,7 @@ Elimina la red indicada
 
 Crea un contenedor que incluye conexión a la red bridge indicada.
 
-Para que los contenedores funcionen es necesario que las redes que utilizan hayan sido creadas previamente.
+Para que los contenedores funcionen es necesario que las redes que utilizan hayan sido creadas previamente. -->
 
 
 ## Archivo Dockerfile
@@ -244,7 +244,7 @@ Lo mismo pero en directorio actual. El archivo Dockerfile debe estar aquí.
 ## Docker Compose
 
 
-Habilita una plantilla para facilitar  la creación de los contenedores. El archivo de configuración se llama docker-compose.yml   (archivo YAML). Dentro del archivo debe respetarse estrictamente la indentación sino no funciona.También hay que respetar las comillas para los números de puerto y los guiones donde se indican. Docker Compose aprovecha el archivo Dockerfile por defecto para completar la configuración del proyecto.
+Habilita una plantilla para facilitar  la creación de los contenedores. El archivo de configuración se llama `docker-compose.yml`   (archivo YAML). Dentro del archivo debe respetarse estrictamente la indentación sino no funciona.También hay que respetar las comillas para los números de puerto y los guiones donde se indican. Docker Compose aprovecha el archivo Dockerfile por defecto para completar la configuración del proyecto.
 Los comentarios son precedidos del carácter ’#’
 
 Sintaxis (ejemplo):
