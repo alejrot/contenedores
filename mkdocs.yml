@@ -1,7 +1,7 @@
 site_name: Contenedores
 
 # site_description: Documentación y apuntes sobre contenedores
-site_description: Despliegue de aplicaciones contenidas via Docker, Podman, etc.
+site_description: "Documentacion sobre contenedores de software: Docker, Podman, etc."
 
 site_url: https://alejrot.github.io/contenedores/
 
