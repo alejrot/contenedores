@@ -99,6 +99,10 @@ También elimina las redes comunes entre contenedores.
 ## Rama desarrollo
 
 Es posible crear dos archivos alternos de configuración para crear una rama de desarrollo (*development*) de los contenedores sin afectar la rama que ya está operando. 
+
+
+## Sintaxis
+
 Para esto se crean dos archivos adicionales llamados `Dockerfile.dev` y `docker-compose-dev.yml`.
 Este segundo archivo debe apuntar al primero, esto se hace añadiendo las siguientes lineas:
 ```yaml hl_lines="5-6"
@@ -112,7 +116,23 @@ services:
 		  #...
 ```
 
+## Ejecución
+
 Para operar con estos archivos se usa la opción `#!bash -f `del comando `#!bash docker compose`:
+
+### Creación automática
+
+
 ```bash
 docker compose -f docker-compose-dev.yml up
 ```
+
+
+### Eliminación automática (PROBARR)
+
+
+```bash
+docker compose -f docker-compose-dev.yml  down
+```
+
+
