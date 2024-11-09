@@ -277,6 +277,25 @@ podman run --rm nombre_imagen
 ```
 
 
+!!! example "Ejemplo de uso: Banner de Podman"
+
+    ```bash title="Contenedor de Banner"
+    podman run -dt --name PodmanBanner --replace  -p 8081:80 quay.io/libpod/banner
+    ```
+
+    ```bash title="Request al contenedor"
+    curl localhost:8081
+    ```
+    ``` title="Logo respuesta"
+       ___          __              
+      / _ \___  ___/ /_ _  ___ ____ 
+     / ___/ _ \/ _  /  ' \/ _ `/ _ \
+    /_/   \___/\_,_/_/_/_/\_,_/_//_/
+    ```
+
+
+
+
 
 ## Redes puente
 
@@ -317,8 +336,10 @@ podman create [...]  --network nombre_red  [...]
 
 
 
+## Referencias
 
 
+[Repositorio ofical de Podman - Networking básico](https://github.com/containers/podman/blob/main/docs/tutorials/basic_networking.md)
 
 
 
