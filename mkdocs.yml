@@ -1,12 +1,13 @@
 site_name: Contenedores
 
+# site_description: Documentación y apuntes sobre contenedores
+site_description: Despliegue de aplicaciones contenidas via Docker, Podman, etc.
 
-
-# site_url: https://marcelomarot.github.io/markdown-mkdocs/
+site_url: https://alejrot.github.io/contenedores/
 
 # # Repositorio
-# repo_url: https://github.com/MarceloMarot/markdown-mkdocs
-# repo_name: markdown-mkdocs
+# repo_url: https://github.com/alejrot/contenedores
+# repo_name: contenedores
 # edit_uri: edit/master/docs/
 
 
@@ -23,7 +24,35 @@ theme:
     next: fontawesome/solid/angle-right
     # Icono de repositorio
     repo: fontawesome/brands/github
-
+    tag:
+      # icono comodín
+      # default: material/cursor-default-click
+      # iconos especificos
+      html: fontawesome/brands/html5
+      js: fontawesome/brands/js
+      css:  fontawesome/brands/css3
+      yaml: simple/yaml
+      python: fontawesome/brands/python
+      docker: fontawesome/brands/docker
+      podman: simple/podman
+      markdown: fontawesome/brands/markdown
+      mkdocs: simple/materialformkdocs
+      ts: simple/typescript
+      csv: fontawesome/solid/file-csv
+      bash: simple/gnubash
+      express: simple/express
+      reactjs: simple/react
+      nodejs: fontawesome/brands/node-js
+      npm:  material/npm
+      pnpm: simple/pnpm
+      vitejs: simple/vite
+      sqlite: simple/sqlite
+      sqlalchemy: simple/sqlalchemy
+      mysql: simple/mysql
+      postgresql: simple/postgresql
+      mariadb: simple/mariadb
+      # mariadb: simple/mariadbfoundation
+      mongodb: simple/mongodb
 
  
   features:
@@ -148,15 +177,61 @@ plugins:
   # busqueda
   - search
 
+  # etiquetas
+  - tags:
+      tags_file: tags.md
+
+
+  # habilitacion por grupo 
+  # grupo Nº1: servidor remoto ('Continuous Integration')
+  - group:
+      enabled: !ENV CI
+      plugins:
+        # fechas de repositorio
+        - git-revision-date-localized:
+            enabled: true
+            enable_creation_date: true
+            type: date        # fecha
+            # type: datetime    # fecha y hora
+            # type: iso_date    # fecha ISO (sólo numeros)
+            # type: iso_datetime  # fecha ISO (sólo numeros)
+            # type: timeago       # tiempo desde publicación
+            fallback_to_build_date: true
+        # Tarjetas PNG automáticas 
+        - social:
+            cards_layout: default/accent
 
 
 
+extra:
+#   homepage: https://alejrot.github.io/contenedores/
 
-# extra:
-#   homepage: https://marcelomarot.github.io/markdown-mkdocs/
-
-
-
+  # Etiquetas de contenidos
+  tags:
+    HTML5: html
+    JavaScript: js
+    CSS: css
+    YAML: yaml
+    Python: python
+    Docker: docker 
+    Podman: podman 
+    MarkDown: markdown
+    MkDocs: mkdocs
+    TypeScript: ts
+    CSV: csv
+    Bash: bash 
+    Express: express
+    ReactJS: reactjs
+    NodeJS: nodejs
+    NPM: npm
+    PNPM: pnpm
+    ViteJS: vitejs
+    SQLite: sqlite
+    SQLAlchemy:  sqlalchemy
+    MySQL:  mysql
+    PostgreSQL:  postgresql
+    MariaDB: mariadb
+    MongoDB: mongodb
 
 
 
