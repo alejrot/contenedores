@@ -7,7 +7,7 @@ tags:
 #   - MkDocs
 #   - Python
   - Docker
-#   - Podman
+  - Podman
   # - MarkDown
 #   - TypeScript
   # - CSV
@@ -27,30 +27,87 @@ tags:
 ---
 
 
-# Redes en Docker
+# Redes Bridge
+<!-- 
+Es posible interconectar los contenedores mediante redes puente (*bridge*) creadas en Docker. -->
 
-Es posible interconectar los contenedores mediante redes puente (*bridge*) creadas en Docker.
+Los contenedores se interconectan mediante redes puente (*bridge)*.
+
+
+## Listar redes
 
 Enumera las redes creadas por los contenedores
 
-```bash
-docker network ls
-```
+=== "Docker"
+
+    ```bash title="Redes - listar"
+    docker network ls
+    ```
+=== "Podman" 
+
+    ```bash title="Redes - listar"
+    podman network ls
+    ```
+
+## Crear red
 
 Crea una nueva red del tipo bridge (puente) con el nombre especificado:
-```bash
-docker network create nombre_red
-```
+
+=== "Docker"
+
+    ```bash title="Redes - crear"
+    docker network create nombre_red
+    ```
+
+=== "Podman" 
+
+    ```bash title="Redes - crear"
+    podman network create nombre_red
+    ```
+
+## Eliminar red
+
 Elimina la red indicada:
-```bash
-docker network rm nombre_red
-```
+
+=== "Docker"
+
+    ```bash title="Redes - eliminar"
+    docker network rm nombre_red
+    ```
+
+=== "Podman" 
+
+    ```bash title="Redes - eliminar"
+    podman network rm nombre_red
+    ```
+
+## Contenedores conectados
 
 Crea un contenedor que incluya conexión a la red *bridge* indicada. 
 La red puente se indica como una opción más:
-```bash
-docker create [...]  --network nombre_red  [..]
-```
 
-Para que los contenedores funcionen es necesario que las redes que utilizan hayan sido creadas previamente.
+
+=== "Docker"
+
+    ```bash title="Contenedores - conectados a red"
+    docker create [...]  --network nombre_red  [..]
+    ```
+
+=== "Podman" 
+
+    ```bash title="Contenedores - conectados a red"
+    podman create [...]  --network nombre_red  [...]
+    ```
+
+!!! warning "Redes preexistentes"
+
+    Para que la comunicación entre contenedores funcione es necesario que las redes que estos utilizan hayan sido creadas previamente.
+
+
+
+## Referencias
+
+
+[Repositorio ofical de Podman - Networking básico](https://github.com/containers/podman/blob/main/docs/tutorials/basic_networking.md)
+
 

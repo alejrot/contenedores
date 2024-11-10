@@ -296,25 +296,29 @@ podman inspect  --format='{{.NetworkSettings.IPAddress}}' nombre_contenedor
 ```
 
 
+<!-- 
+### Run -->
 
-### Run
-
-
+<!-- 
 Combina varios comandos:
 
 1. Busca la imagen y la descarga si no existe;
 2. Crea un contenedor que incluye la imagen elegida;
-3. Inicia el contenedor creado.
-
+3. Inicia el contenedor creado. 
+-->
+<!-- 
 Esta instrucción no devuelve el control al usuario a menos que termine o se cancele. Si se repite el comando varias veces se crean varios contenedores parecidos, uno por comando.
 
 Uso básico:
 
 ```bash title="run"
 podman run nombre_imagen
-```
-
+``` 
+-->
+<!-- 
 La opción `-d` (*dettached*) le devuelve el control al usuario de inmediato. El contenedor seguirá funcionando en segundo plano
+
+
 
 ```bash title="run - segundo plano"
 podman run -d nombre_imagen
@@ -324,8 +328,10 @@ Lo mismo pero añadiendo el *port mapping*:
 
 ```bash title="run - port mapping"
 podman run --name nombre_contenedor -p puerto_anfitrion:puerto_imagen -d nombre_imagen
-```
+``` 
+-->
 
+<!-- 
 La opción `--rm` permite crear contenedores descartables. Éstos son eliminados automáticamente cuando se detienen. 
 
 
@@ -349,10 +355,10 @@ podman run --rm nombre_imagen
      / ___/ _ \/ _  /  ' \/ _ `/ _ \
     /_/   \___/\_,_/_/_/_/\_,_/_//_/
     ```
+ -->
 
 
-
-
+<!-- 
 
 ## Redes puente
 
@@ -373,9 +379,10 @@ podman network create nombre_red
 Elimina la red indicada:
 ```bash title="Redes - eliminar"
 podman network rm nombre_red
-```
+``` 
+-->
 
-
+<!-- 
 !!! warning "Redes preexistentes"
     
     Para que los contenedores funcionen conectados a una *red bridge* es necesario que las redes que utilizan hayan sido creadas previamente.
@@ -387,10 +394,10 @@ Crea un contenedor que incluye conexión a la red puente indicada:
 ```bash title="Contenedores - conectado a red"
 podman create [...]  --network nombre_red  [...]
 ```
+ -->
 
 
-
-
+<!-- 
 
 
 ## Referencias
@@ -398,7 +405,7 @@ podman create [...]  --network nombre_red  [...]
 
 [Repositorio ofical de Podman - Networking básico](https://github.com/containers/podman/blob/main/docs/tutorials/basic_networking.md)
 
-
+ -->
 
 
 
