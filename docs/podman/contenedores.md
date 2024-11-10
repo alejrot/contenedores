@@ -25,7 +25,7 @@ tags:
   # - MariaDB
 ---
 
-# Imágenes y contenedores
+<!-- # Imágenes y contenedores -->
 <!-- 
 Las imágenes son los ejecutables compactados ,los cuales pueden incorporar intérpretes de lenguajes, bibliotecas, frameworks, etc. -->
 
@@ -90,7 +90,7 @@ podman image rm nombre_imagen:numero_version
 
  -->
 
-## Contenedores
+<!-- ## Contenedores -->
 
 <!-- 
 ### Creación
@@ -210,7 +210,7 @@ De esta forma, la creación del contenedor queda como:
 podman create --security-opt label=disable --name nombre_contenedor nombre_imagen
 ``` -->
 
-
+<!-- 
 ### Puertos y Port Mapping
 
 
@@ -221,9 +221,9 @@ Crea el contenedor ya mapeado al puerto host deseado. ( opción `-p`: *publish* 
 ```bash title="Contenedor - con port mapping"
 podman create  -p puerto_anfitrion:puerto_imagen --name nombre_contenedor nombre_imagen
 ```
+ -->
 
-
-
+<!-- 
 ### Variables de Entorno
 
 
@@ -252,11 +252,11 @@ podman create \ -e VARIABLE_1=VALOR_1 \ -e VARIABLE_2=VALOR_2 \ nombre_imagen
 	-e MONGO_INITDB_ROOT_PASSWORD=secret \
 	--name mongo_admin  mongo 
     ```
-    
+     -->
 
 
 
-
+<!-- 
 ### Logs
 
 El comando `logs` da los reportes del container usado hasta el presente y devuelve el control de la terminal al usuario.
@@ -273,7 +273,11 @@ podman logs --follow nombre_contenedor
 ```
 
 !!! hint "Atajo de salida"
-    Se sale del *modo live* con ++ctrl++ + ++c++
+    Se sale del *modo live* con ++ctrl++ + ++c++ 
+-->
+
+
+
 
 
 ### Inspeccionar metadatos

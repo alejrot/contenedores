@@ -27,11 +27,6 @@ tags:
 ---
 
 
-<!-- 
-=== "Docker"
-=== "Podman"
- -->
-
 
 # Contenedores
 
