@@ -146,8 +146,28 @@ Sin embargo, existen paquetes adicionales qu
 
 
 
+https://www.redhat.com/sysadmin/podman-docker-compose
+
+
+## `docker compose` en Podman
 
 
 
+instalar `podman-docker` y `docker-compose`
+
+
+Arrancar servicio Podman:
+
+    sudo systemctl start podman.socket
+
+Verificar conexion:
+
+    sudo curl -H "Content-Type: application/json" --unix-socket /var/run/docker.sock http://localhost/_ping
+
+
+
+
+
+[Red Hat - Using Podman and Docker Compose](https://www.redhat.com/sysadmin/podman-docker-compose)
 
 [Linux Config.org - How to use docker-compose with Podman on Linux](https://linuxconfig.org/how-to-use-docker-compose-with-podman-on-linux)
