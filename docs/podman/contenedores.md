@@ -287,6 +287,7 @@ Los metadatos se leen con el comando `inspect`:
 
 ```bash  title="inspeccionar"
 podman inspect nombre_contenedor
+podman inspect nombre_imagen
 ```
 
 La metadata se devuelve como objeto JSON (pares clave - valor). Si se busca solamente un parámetro particular se usa la opción `--format`:

@@ -235,7 +235,29 @@ extra:
 
 
 
-# nav:
-  # - 
+nav:
+  - Indice: index.md
+  - Docker & Podman:
+    - Introducción:     docker/01_intro.md
+    - Virtualización:   docker/02_virtualizacion.md
+    - Escritorio:       docker/03_desktop.md
+    - Imágenes:         docker/04_imagenes.md
+    - Contenedores:     docker/05_contenedores.md
+    - Logs:             docker/06_logs.md
+    - Variables de Entorno:     docker/07_variables_entorno.md
+    - Puertos:          docker/08_puertos.md
+    - Comando Run:      docker/09_run.md
+    - Redes Bridge:      docker/10_redes.md
+
+  - Pendientes:
+    - Dockerfile:     docker/11_dockerfile.md
+    - Docker Compose:     docker/12_compose.md
+    - Volumenes:     docker/13_volumes.md
+
+
+  - Tags: tags.md
+
+
+
 
 

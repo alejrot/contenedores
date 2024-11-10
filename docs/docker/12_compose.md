@@ -136,3 +136,18 @@ docker compose -f docker-compose-dev.yml  down
 ```
 
 
+
+
+
+## PODMANNNNNN
+
+Podman no trae incluida las herramientas para trabajar con archivos `docker-compose.yml`.
+Sin embargo, existen paquetes adicionales qu
+
+
+
+
+
+
+
+[Linux Config.org - How to use docker-compose with Podman on Linux](https://linuxconfig.org/how-to-use-docker-compose-with-podman-on-linux)
