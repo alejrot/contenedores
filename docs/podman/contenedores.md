@@ -26,35 +26,39 @@ tags:
 ---
 
 # Imágenes y contenedores
+<!-- 
+Las imágenes son los ejecutables compactados ,los cuales pueden incorporar intérpretes de lenguajes, bibliotecas, frameworks, etc. -->
 
-Las imágenes son los ejecutables compactados ,los cuales pueden incorporar intérpretes de lenguajes, bibliotecas, frameworks, etc.
+<!-- 
+Los contenedores son los objetos que "rodean" las imágenes y que incorporan las configuraciones, rutinas de programa, etc.  -->
 
 
-Los contenedores son los objetos que "rodean" las imágenes y que incorporan las configuraciones, rutinas de programa, etc. 
 
-## Imágenes
-
+<!-- ## Imágenes -->
+<!-- 
 ### Listado
 
 Indica qué imágenes están descargadas en la PC y sus características básicas: versión, identificador, espacio ocupado, etc.
 
 ```bash title="Listar imágenes locales"
 podman images
-```
-
+``` -->
+<!-- 
 !!! info "DockerHub"
 
     En [DockerHub](https://hub.docker.com/) se puede consultar qué imágenes hay disponibles e indica el comando completo para descargarlas. 
+ -->
 
-
+<!-- 
 !!! info "Fuentes de imágenes"
 
     - [Docker](docker.io/)
     - [Fedora Project](registry.fedoraproject.org/)
     - [Red Hat](registry.access.redhat.com/) (Es de pago)
-    - [Quay](quay.io/)
+    - [Quay](quay.io/) -->
 
 
+<!-- 
 ### Descarga
 
 Descarga la última versión disponible de la imagen indicada desde DockerHub y la etiqueta como latest.
@@ -62,7 +66,11 @@ Descarga la última versión disponible de la imagen indicada desde DockerHub y 
 ```bash title="Descargar imagen - Última release"
 podman pull nombre_imagen
 ```
-Descarga la versión indicada de la imagen  y la etiqueta numerada.Si no se indica la versión se descarga la más reciente (latest).
+
+Descarga la versión indicada de la imagen  y la etiqueta numerada.
+Si no se indica la versión se descarga la más reciente (latest). -->
+
+<!-- 
 
 ```bash title="Descargar imagen - version específica"
 podman pull nombre_imagen:numero_version
@@ -71,8 +79,8 @@ podman pull nombre_imagen:numero_version
 !!! warning "Opciones de imagen"
 
     Cada imagen puede tener distintas opciones de configuración. Por ello hay que chequear también las opciones que se requieren para configurar los futuros contenedores basados en estas imágenes. 
-
-
+ -->
+<!-- 
 ### Borrado
 
 Elimina del disco la imagen especificada:
@@ -80,12 +88,12 @@ Elimina del disco la imagen especificada:
 podman image rm nombre_imagen:numero_version
 ```
 
-
+ -->
 
 ## Contenedores
 
+<!-- 
 ### Creación
-
 `podman create` crea un contenedor nuevo basado en la imagen especificada. Devuelve un número de identificador (ID).
 
 ```bash title="Crear contenedor - nombre arbitrario"
@@ -94,20 +102,27 @@ podman create nombre_imagen
 
 ```bash title="Crear contenedor - con nombre"
 podman create --name nombre_contenedor nombre_imagen
-```
+``` 
+-->
 
 
 <!-- Crea un contenedor nuevo basado en la imagen especificada con el nombre indicado. -->
 
+
+
+
+
+
+<!-- 
 ### Arranque
 
 La puesta en marcha de los contenedores se puede hacer en base a su número identificador o en base a su nombre.
 
-<!-- Pone en funcionamiento el contenedor identificado por ID. -->
+
 ```bash title="Arranque - por ID"
 podman start id_contenedor
 ```
-<!-- Pone en funcionamiento el contenedor indicado por nombre. -->
+
 ```bash title="Arranque - por nombre"
 podman start nombre_contenedor
 ```
@@ -122,14 +137,20 @@ Las opciones se pueden indicar juntas:
 ```bash title="Arranque - interactivo"
 podman start -ai nombre_contenedor      
 ```
+ -->
 
 
+
+
+<!-- 
 ### Detención
 
 Detiene al contenedor indicado:
 ```bash title="Detención - por nombre"
 podman stop nombre_contenedor
-```
+``` -->
+
+<!-- 
 
 !!! info "Señales de parada"
 
@@ -147,8 +168,11 @@ podman stop nombre_contenedor
     ```
     En el ejemplo, la señal SIGUP hace que la aplicación relea sus archivos de configuración, siempre y cuando la aplicación lo soporte.
 
+ -->
 
 
+
+<!-- 
 ### Listado
 
 Indica los contenedores en funcionamiento:
@@ -160,17 +184,20 @@ Indica todos los contenedores existentes:
 
 ```bash title="Listado - todos"
 podman ps -a
-```
+``` -->
+
+<!-- 
 
 ### Borrado
 
 Elimina el contenedor indicado
 ```bash title="Borrado de contenedor"
 podman rm nombre_contenedor
-```
+``` 
+-->
 
 
-
+<!-- 
 ### Permisos de ejecución (REVISAR)
 
 
@@ -181,7 +208,7 @@ De esta forma, la creación del contenedor queda como:
 
 ```bash title="Crear contenedor - con nombre"
 podman create --security-opt label=disable --name nombre_contenedor nombre_imagen
-```
+``` -->
 
 
 ### Puertos y Port Mapping
