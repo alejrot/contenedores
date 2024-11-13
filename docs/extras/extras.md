@@ -46,7 +46,7 @@ Ejemplo: abrir una shell del contenedor y explorar archivos internos
 
 ```bash
 docker exec -it <contenedor> sh  
-# ls
+ls
 ```
 
 

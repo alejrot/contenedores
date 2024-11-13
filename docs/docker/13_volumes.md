@@ -49,7 +49,9 @@ permitiendo su compartimento y reutilización.
 en estos volúmenes se indica qué carpeta montar y adonde montarla.
 
 
-## Crear 
+## Gestionar volumenes
+
+### Crear 
 
 === "Docker"
 
@@ -63,7 +65,7 @@ en estos volúmenes se indica qué carpeta montar y adonde montarla.
 	podman volume create nombre_volumen
 	```
 
-## Listar 
+### Listar 
 
 La lista de los volúmenes de usuario se obtiene con el comando `list`:
 
@@ -79,7 +81,7 @@ La lista de los volúmenes de usuario se obtiene con el comando `list`:
 	podman volume list
 	```
 
-## Inspeccionar
+### Inspeccionar
 
 La información del volumen elegido se obtiene con el comando `inspect`:
 
@@ -123,16 +125,16 @@ En el ejemplo, el punto de montaje queda:
 Más información sobre el [comando inspect](14_inspect.md).
 
 
-## Borrar
+### Borrar voluemn
 
-Los volumenes se pueden eliminar con ayuda del comando `rm`: 
+Los volumenes se pueden eliminar uno a uno con ayuda del comando `rm`: 
 
 === "Docker"
-	```bash title="Listado de volumenes"
+	```bash title="Borrar volumen"
 	docker volume rm nombre_volumen
 	```
 === "Podman" 
-	```bash title="Listado de volumenes"
+	```bash title="Borrar volumen"
 	podman volume rm nombre_volumen
 	```
 
@@ -153,6 +155,121 @@ Los volumenes se pueden eliminar con ayuda del comando `rm`:
     `/var/lib/containers/storage/volumes/`
 
 
+### Borrar (no utilizados)
+
+
+Con el comando `prune` se puede eliminar aquellos contenedores que no están siendo usados por ningun contenedor: 
+
+=== "Docker"
+
+	```bash	title="Borrar volumenes no usados"
+	docker volume prune
+	```
+
+=== "Podman" 
+
+	```bash	title="Borrar volumenes no usados"
+	podman volume prune
+	```
+
+Este comando lista los volumenes susceptibles de ser borrados y pide confirmación antes de eliminarlos.
+
+
+## Crear contenedores con volumenes
+
+### Agregado de volumen
+
+La forma más simple de configurar el agregado de volumenes es mediante la opción `-v`. 
+Con ella se especifican el nombre del volumen 
+y la ruta interna del contenedor sobre la que se debe montar el volumen.
+
+=== "Docker"
+
+	```bash title="montaje de volumen - solo lectura"
+	docker create -v nombre_volumen=ruta_montaje_interna  nombre_imagen
+	```
+
+
+=== "Podman" 
+
+	```bash title="montaje de volumen - solo lectura"
+	podman create -v nombre_volumen=ruta_montaje_interna  nombre_imagen
+	```
+
+
+!!! tip "TIP: rutas para bases de datos"
+
+	Los gestores de bases de datos tienen ciertas rutas predefinidas para guardar la información. 
+	En los sistemas Linux estas rutas son:
+
+	|Base de datos| ruta de montaje|
+	|---|---|
+	|**MySQL** |`/var/lib/mysql`|
+	|**PostgreSQL**| `/var/lib/postgresql/data`|
+	|**MongodB** |`/data/db`|
+
+	Dado que las imágenes de Docker y Podman son basadas en distribuciones Linux, estas mismas rutas son las usadas adentro del contenedor.
+
+
+!!! example "Ejemplo: base de datos MariaDB"
+
+
+	=== "Docker"
+
+		```bash title="variables de entorno"
+		# variables de entorno
+		export MARIADB_ROOT_PASSWORD=1234
+		export MARIADB_DATABASE=mi-db
+		```
+
+		```bash title="volumen"
+		# creacion volmen
+		docker volume create mariadb-persistente
+		```
+
+		```bash title="contenedor con volumen" hl_lines="4"
+		docker create --name mariadb-test -p3306:3306 \
+		-e MARIADB_DATABASE=$MARIADB_DATABASE \
+		-e MARIADB_ROOT_PASSWORD=$MARIADB_ROOT_PASSWORD \
+		-v mariadb-persistente:/var/lib/mysql \
+		--replace  mariadb:latest  
+		```
+
+	=== "Podman" 
+
+		```bash title="variables de entorno"
+		# variables de entorno
+		export MARIADB_ROOT_PASSWORD=1234
+		export MARIADB_DATABASE=mi-db
+		```
+
+		```bash title="volumen"
+		# creacion volmen
+		podman volume create mariadb-persistente
+		```
+
+		```bash title="contenedor con volumen" hl_lines="4"
+		podman create --name mariadb-test -p3306:3306 \
+		-e MARIADB_DATABASE=$MARIADB_DATABASE \
+		-e MARIADB_ROOT_PASSWORD=$MARIADB_ROOT_PASSWORD \
+		-v mariadb-persistente:/var/lib/mysql \
+		--replace  mariadb:latest  
+		```
+
+
+
+
+
+### Sólo lectura
+
+
+Los volumenes se pueden agregar a los contenedores con la opción `ro` (*read only*)
+
+
+```bash	title="montaje de volumen - solo lectura"
+podman create -v nombre_volumen=ruta_montaje_interna:ro  nombre_imagen
+```
+
 
 
 
@@ -160,3 +277,7 @@ Los volumenes se pueden eliminar con ayuda del comando `rm`:
 ## Referencias
 
 [RedHat.com - Compartiendo archivos entre dos contenedores](https://docs.redhat.com/es/documentation/red_hat_enterprise_linux/8/html/building_running_and_managing_containers/sharing-files-between-two-containers_building-running-and-managing-containers)
+
+
+
+[Docker Docs - Volumes](https://docs.docker.com/engine/storage/volumes/)

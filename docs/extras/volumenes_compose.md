@@ -84,6 +84,9 @@ volumes:
 
 ```
 
+
+<!-- 
+
 **TIP: rutas para bases de datos**
 
 Los gestores de bases de datos tienen ciertas rutas predefinidas para guardar la información.
@@ -93,4 +96,5 @@ En los sistemas Linux estas rutas son:
 - MySQL `/var/lib/mysql`
 - PostgreSQL: `/var/lib/postgresql/data`
 
-Dado que las imágenes de Docker son basadas en distribuciones Linux, estas mismas rutas son las usadas adentro del contenedor.
+Dado que las imágenes de Docker son basadas en distribuciones Linux, estas mismas rutas son las usadas adentro del contenedor. 
+-->

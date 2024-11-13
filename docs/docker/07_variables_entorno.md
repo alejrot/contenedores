@@ -11,7 +11,7 @@ tags:
   # - MarkDown
 #   - TypeScript
   # - CSV
-#   - Bash
+  - Bash
 #   - Express
 #   - ReactJS
 #   - NodeJS
@@ -28,18 +28,20 @@ tags:
 
 # Variables de Entorno
 
-Las variables de entorno se agregan al contenedor durante su creación, mediante la opción `-e`: 
+
+Las variables de entorno se agregan al contenedor durante su creación, mediante la opción `-e`. 
+
 
 === "Docker"
 
     ```bash title="Crear contenedor - con variable entorno"
-    docker create -e VARIABLE=VALOR  nombre_imagen
+    docker create -e VARIABLE=valor  nombre_imagen
     ```
 
 === "Podman" 
 
     ```bash title="Crear contenedor - con variable entorno"
-    podman create -e VARIABLE=VALOR  nombre_imagen
+    podman create -e VARIABLE=valor  nombre_imagen
     ```
 
 De usarse varias variables de entorno se usa la opción `-e` para separlas:
@@ -48,18 +50,53 @@ De usarse varias variables de entorno se usa la opción `-e` para separlas:
 === "Docker"
 
     ```bash title="Crear contenedor - con varias variables entorno"
-    docker create -e VARIABLE_1=VALOR_1 -e VARIABLE_2=VALOR_2 nombre_imagen
+    docker create -e VARIABLE_1=valor_1 -e VARIABLE_2=valor_2 nombre_imagen
     ```
 
 === "Podman" 
 
     ```bash title="Crear contenedor - con varias variables entorno"
-    podman create -e VARIABLE_1=VALOR_1 -e VARIABLE_2=VALOR_2 nombre_imagen
+    podman create -e VARIABLE_1=valor_1 -e VARIABLE_2=valor_2 nombre_imagen
     ```
 
 
 Las variables de entorno requeridas por cada imagen
-se indican en la página proveedora dede la descarga. 
+se indican en la página proveedora de la descarga. 
+
+
+Los valores necesarios se pueden pasar tambińe usando variables de entorno desde la terminal.
+
+Por ejemplo, para crear una variable de entorno en Bash se usa el comando `#!bash export`:
+
+
+```bash title="Variables de entorno - crear"
+# creacion
+export VARIABLE_ENTORNO=valor
+```
+
+entonces el valor se asigna anteponiendo el símbolo `#!bash $`a la variable:
+
+=== "Docker"
+
+    ```bash title="Crear contenedor - con variable entorno"
+    docker create -e VARIABLE=$VARIABLE_ENTORNO  nombre_imagen
+    ```
+
+=== "Podman" 
+
+    ```bash title="Crear contenedor - con variable entorno"
+    podman create -e VARIABLE=$VARIABLE_ENTORNO  nombre_imagen
+    ```
+
+
+El valor de las variables se verifica con el comando `#!bash echo`
+
+```bash title="Variables de entorno - consultar"
+# consulta
+echo $VARIABLE_ENTORNO
+echo ${VARIABLE_ENTORNO}
+```
+
 
 
 !!! tip "Múltiples lineas"
@@ -71,8 +108,8 @@ se indican en la página proveedora dede la descarga.
 
         ```bash title="Crear contenedor - con varias variables entorno"
         docker create \
-        -e VARIABLE_1=VALOR_1 \
-        -e VARIABLE_2=VALOR_2 \ 
+        -e VARIABLE_1=valor_1 \
+        -e VARIABLE_2=valor_2 \ 
         nombre_imagen
         ```
 
@@ -80,8 +117,8 @@ se indican en la página proveedora dede la descarga.
 
         ```bash title="Crear contenedor - con varias variables entorno"
         podman create \
-        -e VARIABLE_1=VALOR_1 \
-        -e VARIABLE_2=VALOR_2 \ 
+        -e VARIABLE_1=valor_1 \
+        -e VARIABLE_2=valor_2 \ 
         nombre_imagen
         ```
 
