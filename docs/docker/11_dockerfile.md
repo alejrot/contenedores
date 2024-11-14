@@ -5,9 +5,9 @@ tags:
   # - CSS
 #   - YAML
 #   - MkDocs
-#   - Python
+  - Python
   - Docker
-#   - Podman
+  - Podman
   # - MarkDown
 #   - TypeScript
   # - CSV
@@ -30,28 +30,56 @@ tags:
 
 # Archivo Dockerfile
 
-El archivo Dockerfile nos permite crear nuevas imágenes en base a una preexistente donde se incluyan nuevos comandos y aplicaciones. A este archivo no se le puede cambiar el nombre.
+El archivo Dockerfile nos permite crear nuevas imágenes en base a una preexistente donde se incluyan nuevos comandos y aplicaciones.
+Este archivo debe mantener el nombre `Dockerfile` para ser utilizado y no tiene extensión de archivo.
 
-### 1.Sintaxis
+### Sintaxis
 
-La sintaxis es la siguiente:
+La sintaxis del `Dockerfile` es la siguiente:
 
-```Dockerfile
-FROM imagen_base:version		(qué imagen de Docker será afectada)
+```Dockerfile title="Dockerfile - sintaxis genérica"
+FROM imagen_base:version
 
-RUN mkdir - p <ruta_destino>		(se crea el directorio de destino)(tipicamente `/home/app` si es contenedor con Linux)
+RUN mkdir -p "ruta_ejecutables"
 
-RUN <comandos_instalacion_aplicacion>  (opcional)
+RUN comandos_instalacion 
 
-COPY . <ruta_destino>		(completar con la ruta que corresponda)
+WORKDIR "ruta_entorno"
 
-EXPOSE <numero_puerto>			(indica el puerto del contenedor)
+COPY "ruta_host" "ruta_interna"
 
-CMD [ <comando> , <ruta_destino/ejecutable> ]
+EXPOSE numero_puerto
+
+CMD [ "comando" , "ruta_ejecutable" ]
 ```
 
-El comando `RUN` permite instalar aplicaciones dentro de la imagen de ser necesario. 
+La función resumida de cada comando es la siguiente:
 
+|Cláusula| Uso|
+|:---|:---|
+|`FROM`| Elige una imagen preexistente que servirá de referencia|
+|`RUN`| Ejecuta comandos en Bash para crear directorios e instalar software |
+|`COPY`| Copia archivos del *host* a la futura imagen|
+|`WORKDIR`| Cambia la ruta interna del entorno de ejecución |
+|`EXPOSE`| Especifica el nº de puerto para conectar con la imagen|
+|`CMD`| Ordena la ruta y el nombre del comando a ejecutar |
+
+No es obligatorio especificar todos los campos,
+sino que estos se indican o no 
+según se necesite.
+
+
+
+!!! tip "Directorio para ejecutables"
+
+    Una ruta habitual para ubicar los ejecutables dentro de la imagen es `/home/app`. 
+    Este directorio debe ser creado para su uso.
+
+
+
+<!-- 
+El comando `RUN` permite instalar aplicaciones dentro de la imagen de ser necesario.  -->
+<!-- 
 Es posible indicar un directorio de funcionamiento con el comando `WORKDIR`, de este modo la sintaxis quedaría así:
 
 ```Dockerfile
@@ -63,20 +91,74 @@ WORKDIR ruta_destino
 
 CMD [comando , ejecutable]
 ```
+-->
 
-### 2. Nuevas imágenes modificadas
 
-Construir imagen desde Dockerfile: 
-```bash
-docker build -t nombre_aplicacion:numero_version  ruta_a_archivos
-```
-Construye una imagen a partir de un archivo Dockerfile disponible en la ruta indicada. 
-Si la terminal ya está ubicada en el directorio raíz de la aplicación hay que poner un punto. 
+
+!!! example "Ejemplo: ejecutables en Python"
+
+    La imagen oficial de [Python 3](https://hub.docker.com/_/python) propone la siguiente plantilla para crear imágenes derivadas:
+
+    ```Dockerfile
+    FROM python:3
+
+    WORKDIR /usr/src/app
+
+    COPY requirements.txt ./
+    RUN pip install --no-cache-dir -r requirements.txt
+
+    COPY . .
+
+    CMD [ "python", "./script_python.py" ]
+    ```
+    donde `requirements.txt` es el archivo con la lista de todos los paquetes de Python a incluir adentro de la imagen.
+
+
+
+### Crear imágenes modificadas
+
+La imagen se construye con el comando `build`:
+
+=== "Docker"
+
+    ```bash
+    docker build -t nombre_imagen:numero_version  ruta_Dockerfile
+    ```
+    
+=== "Podman" 
+
+    ```bash   
+    docker build -t nombre_imagen:numero_version  ruta_Dockerfile
+    ```
+
+Con él se construye una imagen a partir del archivo Dockerfile
+disponible en la ruta indicada,
+la cual puede ser absoluta o relativa.
+
+Si la terminal ya está ubicada en el directorio raíz de la aplicación hay que poner un punto: 
+
+
+=== "Docker"
+
+    ```bash
+    cd ruta_Dockerfile
+    docker build -t nombre_imagen:numero_version  .
+    ```
+
+=== "Podman" 
+
+    ```bash
+    cd ruta_Dockerfile
+    podman build -t nombre_imagen:numero_version  .
+    ```
+
+
+La imagen creada podrá ser utilizada como cualquier imagen prefabricada 
+para crear nuevos contenedores.
+
+
+
 Ejemplo: `docker build -t miapp:1 .`
 
-Lo mismo pero en directorio actual:
-```bash
-docker build -t nombre_aplicacion:numero_version  .
-```
-El archivo Dockerfile debe estar allí.
+
 

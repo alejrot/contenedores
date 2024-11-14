@@ -90,13 +90,13 @@ La red puente se indica como una opción más:
 === "Docker"
 
     ```bash title="Contenedores - conectados a red"
-    docker create [...]  --network nombre_red  [..]
+    docker create   --network nombre_red  --name nombre_contenedor  nombre_imagen
     ```
 
 === "Podman" 
 
     ```bash title="Contenedores - conectados a red"
-    podman create [...]  --network nombre_red  [...]
+    podman create   --network nombre_red   --name nombre_contenedor  nombre_imagen
     ```
 
 !!! warning "Redes preexistentes"

@@ -248,11 +248,11 @@ nav:
     - Puertos:                    docker/08_puertos.md
     - Volumenes:                  docker/13_volumes.md
     - Inspeccionar metadatos:     docker/14_inspect.md
-    - Comando Run:                docker/09_run.md
     - Redes Bridge:               docker/10_redes.md
+    - Comando Run:                docker/09_run.md
+    - Dockerfile:                 docker/11_dockerfile.md
 
   - Pendientes:
-    - Dockerfile:     docker/11_dockerfile.md
     - Docker Compose:     docker/12_compose.md
 
     - Volumenes con Compose:     extras/volumenes_compose.md
