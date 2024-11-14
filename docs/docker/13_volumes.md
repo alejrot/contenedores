@@ -213,14 +213,19 @@ y la ruta interna del contenedor sobre la que se debe montar el volumen.
 
 !!! example "Ejemplo: base de datos MariaDB"
 
+	En este ejemplo se crea una base de datos SQL con la imagen de MariaDB
+	
+	- acceso con usuario `root` (administrador) y contraseña `1234`;
+	- una base de datos vacía llamada `mi-db`;
+	- un volumen pesistente para la base de datos interna. 
+
+	```bash title="variables de entorno"
+	# variables de entorno
+	export MARIADB_ROOT_PASSWORD=1234
+	export MARIADB_DATABASE=mi-db
+	```
 
 	=== "Docker"
-
-		```bash title="variables de entorno"
-		# variables de entorno
-		export MARIADB_ROOT_PASSWORD=1234
-		export MARIADB_DATABASE=mi-db
-		```
 
 		```bash title="volumen"
 		# creacion volmen
@@ -229,19 +234,13 @@ y la ruta interna del contenedor sobre la que se debe montar el volumen.
 
 		```bash title="contenedor con volumen" hl_lines="4"
 		docker create --name mariadb-test -p3306:3306 \
-		-e MARIADB_DATABASE=$MARIADB_DATABASE \
-		-e MARIADB_ROOT_PASSWORD=$MARIADB_ROOT_PASSWORD \
+		-e MARIADB_DATABASE \
+		-e MARIADB_ROOT_PASSWORD \
 		-v mariadb-persistente:/var/lib/mysql \
 		--replace  mariadb:latest  
 		```
 
 	=== "Podman" 
-
-		```bash title="variables de entorno"
-		# variables de entorno
-		export MARIADB_ROOT_PASSWORD=1234
-		export MARIADB_DATABASE=mi-db
-		```
 
 		```bash title="volumen"
 		# creacion volmen
@@ -250,14 +249,20 @@ y la ruta interna del contenedor sobre la que se debe montar el volumen.
 
 		```bash title="contenedor con volumen" hl_lines="4"
 		podman create --name mariadb-test -p3306:3306 \
-		-e MARIADB_DATABASE=$MARIADB_DATABASE \
-		-e MARIADB_ROOT_PASSWORD=$MARIADB_ROOT_PASSWORD \
+		-e MARIADB_DATABASE \
+		-e MARIADB_ROOT_PASSWORD \
 		-v mariadb-persistente:/var/lib/mysql \
 		--replace  mariadb:latest  
 		```
 
+	Para poder verificar que el contenedor está bien configurado sólo hay que cargar los datos en un conector o programa *front* compatible con bases MariaDB y verificar que la conexión es exitosa.
+	Y para corroborar la persistencia de datos hay que:
+	
+	- crear cambios (tablas, otras bases de datos, etc);
+	- borrar el contenedor
+	- crear el contenedor de nuevo.
 
-
+	Los datos agregados o modificados deben seguir allí.
 
 
 ### Sólo lectura

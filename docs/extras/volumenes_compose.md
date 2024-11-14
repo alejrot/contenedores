@@ -76,11 +76,11 @@ services:
 			- VARIABLE_ENTORNO_2=valor_2
 		volumes:
 			# lista de volumenes accesibles 
-			- contenedor_2-data:  ruta_data_2
+			- nombre_volumen: ruta_montaje_interna 
 
 volumes:
 	# nombre para el volumen 
-	contenedor_2-data:	# queda vacío
+	nombre_volumen: 
 
 ```
 
@@ -98,3 +98,10 @@ En los sistemas Linux estas rutas son:
 
 Dado que las imágenes de Docker son basadas en distribuciones Linux, estas mismas rutas son las usadas adentro del contenedor. 
 -->
+
+
+
+## Referencias
+
+
+[Docker Docs - Volumes top-level element](https://docs.docker.com/reference/compose-file/volumes/)
