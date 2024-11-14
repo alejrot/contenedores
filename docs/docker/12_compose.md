@@ -33,13 +33,23 @@ tags:
 # Docker Compose
 
 
-Este comando habilita usar una plantilla para facilitar  la creación de los contenedores y su interconexión. El archivo de configuración se llama `docker-compose.yml`   (archivo YAML).
+Este comando habilita usar una plantilla para facilitar  la creación de los contenedores y su interconexión. 
+
+El comando `docker compose` viene integrado por defecto en Docker;
+en cambio Podman no lo trae incorporado sino que debe ser instalado y habilitado como extensión.
+
+El archivo de configuración se llama `docker-compose.yml`   
+
+
+## Archivos YAML
+
+(archivo YAML).
 Dentro del archivo debe respetarse estrictamente la indentación sino no funciona.
 También hay que respetar las comillas para los números de puerto y los guiones donde se indican. 
 Docker Compose aprovecha el archivo Dockerfile por defecto para completar la configuración del proyecto.
 Los comentarios son precedidos del carácter `#`
 
-## Sintaxis
+## Sintaxis básica
 
 Sintaxis (ejemplo):
 ```yaml
@@ -53,8 +63,8 @@ services:
 			# lista de mapeos
 			- “puerto_host_1:puerto_imagen_1”
 			- “puerto_host_2:puerto_imagen_2” 
-							#respetar las comillas dobles para los puertos
- 			[...]		#(pueden mapearse tantos puertos como se necesite )
+			# (respetar las comillas dobles para los puertos)
+
 		links:
  			- contenedor_2 		#contenedor destino
 
@@ -65,6 +75,13 @@ services:
 		environment:
 			- VARIABLE_ENTORNO_1=valor_1
 			- VARIABLE_ENTORNO_2=valor_2
+		volumes:
+			# lista de volumenes accesibles 
+			- nombre_volumen: ruta_montaje_interna 
+
+volumes:
+	# nombre para el volumen 
+	nombre_volumen: 
 ```
 
 ## Ejecución
@@ -139,6 +156,12 @@ docker compose -f docker-compose-dev.yml  down
 
 
 
+
+
+
+
+
+
 ## PODMANNNNNN
 
 Podman no trae incluida las herramientas para trabajar con archivos `docker-compose.yml`.
@@ -148,6 +171,19 @@ Sin embargo, existen paquetes adicionales qu
 
 https://www.redhat.com/sysadmin/podman-docker-compose
 
+
+
+## NETWORKING!!!
+
+
+[Newtworking](https://docs.docker.com/compose/how-tos/networking/)
+
+
+## SECRETOSSS!!!!
+
+[Docker Docs - Secrets ](https://docs.docker.com/compose/how-tos/use-secrets/)
+
+[Secrets top-level elements](https://docs.docker.com/reference/compose-file/secrets/)
 
 ## `docker compose` en Podman
 
@@ -167,7 +203,14 @@ Verificar conexion:
 
 
 
+## Referencias
 
 [Red Hat - Using Podman and Docker Compose](https://www.redhat.com/sysadmin/podman-docker-compose)
 
 [Linux Config.org - How to use docker-compose with Podman on Linux](https://linuxconfig.org/how-to-use-docker-compose-with-podman-on-linux)
+
+
+
+
+
+[Docker Docs - Volumes top-level element](https://docs.docker.com/reference/compose-file/volumes/)

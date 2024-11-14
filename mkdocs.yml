@@ -243,19 +243,19 @@ nav:
     - Escritorio:                 docker/03_desktop.md
     - Imágenes:                   docker/04_imagenes.md
     - Contenedores:               docker/05_contenedores.md
+    - Puertos:                    docker/08_puertos.md
+    - Comando Run:                docker/09_run.md
     - Logs:                       docker/06_logs.md
     - Variables de Entorno:       docker/07_variables_entorno.md
-    - Puertos:                    docker/08_puertos.md
+    - Redes Bridge:               docker/10_redes.md
     - Volumenes:                  docker/13_volumes.md
     - Inspeccionar metadatos:     docker/14_inspect.md
-    - Redes Bridge:               docker/10_redes.md
-    - Comando Run:                docker/09_run.md
     - Dockerfile:                 docker/11_dockerfile.md
 
   - Pendientes:
     - Docker Compose:     docker/12_compose.md
 
-    - Volumenes con Compose:     extras/volumenes_compose.md
+
 
   - Podman:
     - Pods:       podman/pods.md

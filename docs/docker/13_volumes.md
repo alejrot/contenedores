@@ -22,7 +22,7 @@ tags:
   # - SQLAlchemy
   # - MySQL
   # - PostgreSQL
-  # - MariaDB
+  - MariaDB
 ---
 
 # Volumenes
@@ -211,58 +211,6 @@ y la ruta interna del contenedor sobre la que se debe montar el volumen.
 	Dado que las imágenes de Docker y Podman son basadas en distribuciones Linux, estas mismas rutas son las usadas adentro del contenedor.
 
 
-!!! example "Ejemplo: base de datos MariaDB"
-
-	En este ejemplo se crea una base de datos SQL con la imagen de MariaDB
-	
-	- acceso con usuario `root` (administrador) y contraseña `1234`;
-	- una base de datos vacía llamada `mi-db`;
-	- un volumen pesistente para la base de datos interna. 
-
-	```bash title="variables de entorno"
-	# variables de entorno
-	export MARIADB_ROOT_PASSWORD=1234
-	export MARIADB_DATABASE=mi-db
-	```
-
-	=== "Docker"
-
-		```bash title="volumen"
-		# creacion volmen
-		docker volume create mariadb-persistente
-		```
-
-		```bash title="contenedor con volumen" hl_lines="4"
-		docker create --name mariadb-test -p3306:3306 \
-		-e MARIADB_DATABASE \
-		-e MARIADB_ROOT_PASSWORD \
-		-v mariadb-persistente:/var/lib/mysql \
-		--replace  mariadb:latest  
-		```
-
-	=== "Podman" 
-
-		```bash title="volumen"
-		# creacion volmen
-		podman volume create mariadb-persistente
-		```
-
-		```bash title="contenedor con volumen" hl_lines="4"
-		podman create --name mariadb-test -p3306:3306 \
-		-e MARIADB_DATABASE \
-		-e MARIADB_ROOT_PASSWORD \
-		-v mariadb-persistente:/var/lib/mysql \
-		--replace  mariadb:latest  
-		```
-
-	Para poder verificar que el contenedor está bien configurado sólo hay que cargar los datos en un conector o programa *front* compatible con bases MariaDB y verificar que la conexión es exitosa.
-	Y para corroborar la persistencia de datos hay que:
-	
-	- crear cambios (tablas, otras bases de datos, etc);
-	- borrar el contenedor
-	- crear el contenedor de nuevo.
-
-	Los datos agregados o modificados deben seguir allí.
 
 
 ### Sólo lectura
@@ -276,6 +224,72 @@ podman create -v nombre_volumen=ruta_montaje_interna:ro  nombre_imagen
 ```
 
 
+
+## Ejemplo aplicado: base de datos
+
+En este ejemplo se crea una base de datos SQL con la [imagen oficial de MariaDB](https://hub.docker.com/_/mariadb).
+Se agregan las siguientes configuraciones:
+
+- la conexion se mantiene en el puerto `3306` (predefinido);
+- acceso con usuario `root` (administrador) y contraseña `1234`;
+- una base de datos vacía llamada `mi-db`;
+- un volumen pesistente para la base de datos interna. 
+
+Primero se exportan los valores de las variables de entorno:
+
+```bash title="variables de entorno"
+# variables de entorno
+export MARIADB_ROOT_PASSWORD=1234
+export MARIADB_DATABASE=mi-db
+```
+
+
+Luego se crea un volumen nombrado `mariadb-persistente`:
+
+=== "Docker"
+
+	```bash title="volumen"
+	# creacion volmen
+	docker volume create mariadb-persistente
+	```
+=== "Podman" 
+
+	```bash title="volumen"
+	# creacion volmen
+	podman volume create mariadb-persistente 
+	```
+
+
+Y por último se crea el contenedor, con el nombre `mariadb-test`:
+
+=== "Docker"
+
+	```bash title="contenedor con volumen" hl_lines="4"
+	docker create --name mariadb-test -p3306:3306 \
+	-e MARIADB_DATABASE \
+	-e MARIADB_ROOT_PASSWORD \
+	-v mariadb-persistente:/var/lib/mysql \
+	--replace  mariadb:latest  
+	```
+
+=== "Podman" 
+
+	```bash title="contenedor con volumen" hl_lines="4"
+	podman create --name mariadb-test -p3306:3306 \
+	-e MARIADB_DATABASE \
+	-e MARIADB_ROOT_PASSWORD \
+	-v mariadb-persistente:/var/lib/mysql \
+	--replace  mariadb:latest  
+	```
+
+Para poder verificar que el contenedor está bien configurado sólo hay que cargar los datos en un conector o programa *front* compatible con bases MariaDB y verificar que la conexión es exitosa.
+Y para corroborar la persistencia de datos hay que:
+
+- crear cambios (tablas, otras bases de datos, etc);
+- borrar el contenedor
+- crear el contenedor de nuevo.
+
+Los datos agregados o modificados deben seguir allí.
 
 
 

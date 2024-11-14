@@ -181,7 +181,7 @@ y al crear el contenedor ya no es necesario hacer la asignación, sino que con e
 
 
 
-## Archivo de variables de entorno
+## Archivos `.env`
 
 
 Las variables de entorno que necesita el contenedor se pueden guardar en forma de archivo de texto con la extensión `.env`:
