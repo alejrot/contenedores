@@ -180,6 +180,13 @@ y al crear el contenedor ya no es necesario hacer la asignación, sino que con e
     ```
 
 
+!!! danger "Comando `history`"
+
+    El comando `history` permite conocer el historial de comandos previos de Bash.
+    Por este motivo hay que evitar asignar los valores de variables sensibles
+    (por ejemplo: contraseñas) desde la terminal.
+
+
 
 ## Archivos `.env`
 
