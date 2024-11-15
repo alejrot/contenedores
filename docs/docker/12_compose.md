@@ -199,6 +199,17 @@ https://www.redhat.com/sysadmin/podman-docker-compose
 
 
 
+## REFERENCIATUS!!!
+
+
+https://compose-spec.io
+
+https://github.com/compose-spec/compose-spec/blob/main/spec.md
+
+
+https://docs.docker.com/reference/compose-file/
+
+
 ## NETWORKING!!!
 
 
@@ -230,6 +241,7 @@ Verificar conexion:
 
 
 ## Referencias
+
 
 [Red Hat - Using Podman and Docker Compose](https://www.redhat.com/sysadmin/podman-docker-compose)
 
