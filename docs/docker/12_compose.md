@@ -35,8 +35,10 @@ tags:
 
 Este comando habilita usar una plantilla para facilitar  la creación de los contenedores y su interconexión. 
 
-El comando `docker compose` viene integrado por defecto en Docker;
-en cambio Podman no lo trae incorporado sino que debe ser instalado y habilitado como extensión.
+El comando `docker compose` viene integrado por defecto en Docker.
+
+en cambio Podman no lo trae incorporado sino que debe ser instalado y habilitado como extensión 
+y se puede invocar tanto por `docker-compose` como por `podman compose` 
 
 El archivo de configuración se llama `docker-compose.yml`   
 
@@ -66,7 +68,7 @@ services:
 			# (respetar las comillas dobles para los puertos)
 
 		links:
- 			- contenedor_2 		#contenedor destino
+			 - contenedor_2 	# contenedor destino
 
 	contenedor_2:
 		image: imagen_2		# (Imagen preexistente)
@@ -83,6 +85,30 @@ volumes:
 	# nombre para el volumen 
 	nombre_volumen: 
 ```
+!!! info "version"
+
+	La etiqueta `version` está obsoleta y es ignorada.
+
+
+!!! warning "`link` vs `depends_on`"
+
+	La opción `link`, usada para comunicar un servicio/contenedor con otro, está obsoleta y el Compose de Podman ya no la ejecuta arrojando un error.
+	Su reemplazo es la opción `depends_on`.
+
+	```yaml
+	links:
+		- contenedor_2 		#contenedor destino
+	```
+
+	```yaml
+	depends_on:
+		- contenedor_2 		#contenedor destino
+	```
+
+	Más info:
+	[Stack Overflow - Difference between links and depends_on in docker_compose.yml](https://stackoverflow.com/questions/35832095/difference-between-links-and-depends-on-in-docker-compose-yml)
+
+
 
 ## Ejecución
 
