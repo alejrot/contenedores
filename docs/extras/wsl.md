@@ -19,11 +19,19 @@ además de su gran velocidad de ejecución.
 ## [¿Qué distros tengo en WSL? (Win 10)](https://terminaldelinux.com/terminal/wsl/instalacion-configuracion-wsl/#qué-distros-tengo-en-wsl)
 
 
-Enumera qué distribuciones están instaladas y cuál lo está por defecto:
+Enumerar qué distribuciones están instaladas y cuál lo está por defecto:
 
 ```bash
 wsl --list
 ```
+
+Enumerar distribuciones disponibles online:
+
+```bash
+wsl --list --online
+```
+
+
 
 Si no hay ninguna actúa una imagen predeterminada de Docker llamada docker-desktop, la cual tiene un importante consumo de recursos.
 
@@ -77,7 +85,8 @@ wsl --import <distribucion> <direccion_ instalacion>
 ```
 
 
-Configuracion en Windows: `wsl.conf` y `.wslconfig`
-wsl.conf → Archivo en la distribución Linux / Docker usada. Ubicacion: /etc/wsl.conf
-.wslconfig → Archivo para Windows que va en la carpeta de usuario (si no existe se crea)
+Configuración en Windows: `wsl.conf` y `.wslconfig`
+
+- `wsl.conf` → Archivo en la distribución Linux / Docker usada. Ubicacion: `/etc/wsl.conf`
+- `.wslconfig` → Archivo para Windows que va en la carpeta de usuario (si no existe se crea)
 
