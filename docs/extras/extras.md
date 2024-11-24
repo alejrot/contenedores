@@ -1,6 +1,27 @@
 # Extras
 
 
+## Nombrar imagenes 
+
+las imágenes ya creadas se renombran con el comando `tag`:
+
+```
+docker tag nombre_actual_imagen   nuevo_nombre_imagen:version
+docker tag id_imagen              nuevo_nombre_imagen:version
+```
+
+<!-- 
+Se indica el nombre de nuestra imagen personalizada, 
+su número de versión y se etiqueta con el grupo de imágenes al que pertenece 
+
+```bash
+docker tag <grupo_imagenes> <mi_imagen>:<version>
+``` 
+**Ejemplo:** 
+si nuestra imagen es una actualización de NodeJS la etiquetamos como NodeJS de modo que aparezca publicada con las demás versiones. 
+-->
+
+
 ## Compartir imagen en Docker Hub
 
 Nos identificamos para que el servidor nos permita subir la imagen a nuestro nombre
@@ -9,21 +30,15 @@ Nos identificamos para que el servidor nos permita subir la imagen a nuestro nom
 docker login
 ```
 
-Se indica el nombre de nuestra imagen personalizada, 
-su número de versión y se etiqueta con el grupo de imágenes al que pertenece 
 
-```bash
-docker tag <grupo_imagenes> <mi_imagen>:<version>
-```
-
-**Ejemplo:** 
-si nuestra imagen es una actualización de NodeJS la etiquetamos como NodeJS de modo que aparezca publicada con las demás versiones.
 
 Ordenamos el envío de nuestra imagen al servidor para publicarla:
 ```bash
 docker push <mi_imagen>:<version>
 ```
 
+INFO: Docker Hub da alojamiento gratuito a las imágenes
+que sean compartidas públicamente por los usuarios.
 
 
 ## Ejecutar aplicaciones internas
@@ -49,7 +64,91 @@ docker exec -it <contenedor> sh
 ls
 ```
 
+## CMD, RUN y ENTRYPOINT en Dockerfile
 
+
+[DIFERENCIA entre CMD, RUN, y ENTRYPOINT en DOCKER - V2M](https://www.youtube.com/watch?v=6ZnecM3ipu4)
+
+
+- `RUN`: permite ejecutar un comando en específico durante la creacion de la imagen.
+Ejemplo:
+    ```dockerfile
+    RUN pip install fastapi
+    ```
+- `CMD`: ejecuta una rutina interna especifica al arrancar el contenedor.
+Ejemplo: un servidor hecho en Python
+    ```dockerfile
+    CMD ["python", "/usr/src/myapp/server.py"]
+    ```
+
+- `ENTRYPOINT`: llama al ejecutable interno al arrancar el contenedor, 
+pero dependiendo de uno o varios argumentos externos.
+Ejemplo: el intérprete de Python encapsulado en un contenedor.
+
+    ```dockerfile
+    ENTRYPOINT ["python"]
+    ```
+
+El contenedor ejecuta la rutina que se le indique como argumento:
+
+    ```bash
+    docker run contenedor-python  ruta_rutina.py
+    ```
+
+
+## `build` con y sin nombre
+
+```bash
+docker build  .
+podman build -t nombre_imagen  .
+```
+
+
+## `run` con ruta a volumnen
+
+Es la opción  `-v`
+```bash
+docker run -d   -v ruta_anfitrion:ruta_interna  ... nombre_imagen
+```
+pueden asignarse varios volumenes con la opcion `-v`:
+
+```bash
+docker run -d   -v ruta_host_1:ruta_interna_1   -v ruta_host_2:ruta_interna_2 ... nombre_imagen
+```
+
+TIP: pasar las rutinas adentro de los contenedores mediante volumenes.
+Esto evita tener que reconstruir los containers cada vez que se hagan cambios en las rutinas.
+
+
+(REVISAR)
+
+
+
+## Multiples contenedores
+
+
+Cuando hay que conectar varios contenedores interdependientes conviene usar las *networks*.
+
+```bash
+docker network create nombre_red
+```
+
+Al crear un contenedor nuevo se incluyen las opciones:
+
+- `--network` :   especifica el nombre de red (preexistenta) a conectar;
+- `--network-alias`: funciona como un apuntador de la red al contenedor destino de la red
+
+Las redes de Docker no necesitan configuración de puertos para funcionar.
+
+INFO: en los archivos `docker-compose.yml` las redes y sus alias se crean automáticamente
+
+
+## MAS: [Optimizing Docker Image Sizes: Advanced Techniques and Tools](https://devdojo.com/bobbyiliev/optimizing-docker-image-sizes-advanced-techniques-and-tools)
+
+- construccion de imagenes en dos fases
+- archivo dockerignore
+- optimizaciones por lenguaje
+- y mucho mas
 
 
 ## Referencias
