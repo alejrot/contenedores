@@ -377,12 +377,434 @@ spec:
 
 ## StatefulSet
 
+Estos manifiestos incluyen un volumen persistente. 
+De esta manera los datos no se pierden si alguno de los pods es eliminado.
+
+```yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: my-csi-app-set
+spec:
+  selector:
+    matchLabels:
+      app: mypod
+  serviceName: "my-frontend"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mypod
+    spec:
+      containers:
+      - name: my-frontend
+        image: busybox
+        args:
+        - sleep
+        - infinity
+        volumeMounts:
+        - mountPath: "/data"
+          name: csi-pvc
+  volumeClaimTemplates:
+  - metadata:
+      name: csi-pvc
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 5Gi      # 5GiB de espacio en disco
+      storageClassName: do-block-storage
+```
+
+Kubernetes crea en el servidor remoto el volumen requerido de manera automática.
+
+
+Nuevo comando: `describe`
+
+```bash
+kubectl describe pod nombre_pod
+```
+
+PVC: Persistent Volume Claim
+
+Estos volumenes se listan con:
+
+```bash
+kubectl get pvc
+```
+
+
+Los manifiestos del tipo `StatefulSet` tienen su propia opcíon de listado:
+
+```bash
+kubectl get statefulsets
+kubectl get sts
+```
+
+Eliminacion:
+```bash
+kubectl delete sts nombre_sts
+```
+
+```bash
+kubectl delete pvc nombre_pvc
+```
+
+
+
+
+
+
 ## Networking
+
+
+
+
+
 
 ## Servicios
 
 
+- Cluster IP
+- Node Port
+- Load Balancer
 
+### Cluster IP
+
+En este manifiesto se crean un *deployment* y un servicio que
+crea una dirección IP privada con la cual se puede acceder a los pods internos.
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      role: hello
+  template:
+    metadata:
+      labels:
+        role: hello
+    spec:
+      containers:
+      - name: hello
+        image: gcr.io/google-samples/hello-app:1.0
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    role: hello
+```
+
+Los puertos de los contenedores internos van variando según son creados. 
+El servicio va buscando y conectando a esos contenedores internos.
+El tipo por defecto de los servicios es `CLusterIP`, por eso no se indica.
+
+### Node Port
+
+
+Este servicio expone un puerto especificado para cada nodo.
+Por lo demás es muy similar al servicio previo.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      role: hello
+  template:
+    metadata:
+      labels:
+        role: hello
+    spec:
+      containers:
+      - name: hello
+        image: gcr.io/google-samples/hello-app:1.0
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello
+spec:
+  type: NodePort            # tipo explicito
+  ports:
+  - port: 8080
+    targetPort: 8080
+    nodePort: 30000
+  selector:
+    role: hello
+```
+
+
+### Load Balancer
+
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      role: hello
+  template:
+    metadata:
+      labels:
+        role: hello
+    spec:
+      containers:
+      - name: hello
+        image: gcr.io/google-samples/hello-app:1.0
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello
+spec:
+  type: LoadBalancer        # tipo explicito
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    role: hello
+```
+
+
+## Ingress
+
+`Ingress` permite el acceso a los servicios mediante el path de la URL.
+Kubernetes despliega un controlador NGINX dentro del clúster, 
+el cual se va a autoconfigurar para redireccionar el tráfico a los servicios.
+
+El controlador ingress necesita ser instalado para su uso.
+
+Recomendado: Helm
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hello-app
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /v1
+        pathType: Prefix
+        backend:
+          service:
+            name: hello-v1
+            port:
+              number: 8080
+      - path: /v2
+        pathType: Prefix
+        backend:
+          service:
+            name: hello-v2
+            port:
+              number: 8080
+```
+
+
+Los manifiestos ingress se consultan con su propia opción:
+
+```yaml
+kubectl get ing
+```
+
+El controlador Ingress suele crear tambíén un load balancer y configura la dirección IP
+
+```yaml
+kubectl -n ingress-nginx get svc
+```
+
+
+Una vez creado el manifiesto *ingress* el funcionamiento se puede verificar con `curl`:
+
+```yaml
+curl http://dirección_ip/v1
+curl http://dirección_ip/v2
+```
+
+
+## ConfigMap
+
+El configMap es un archivo que se sube al servidor Kubernetes y al que los pods tendrán acceso.
+
+
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: game-demo
+data:
+  # property-like keys; each key maps to a simple value
+  player_initial_lives: "3"
+  ui_properties_file_name: "user-interface.properties"
+  #
+  # file-like keys
+  game.properties: |
+    enemy.types=aliens,monsters
+    player.maximum-lives=5
+  user-interface.properties: |
+    color.good=purple
+    color.bad=yellow
+    allow.textmode=true
+```
+
+
+
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+    - name: nginx
+      image: nginx:alpine
+      env:
+        # Define the environment variable
+        - name: PLAYER_INITIAL_LIVES # Nombre de la variable
+          valueFrom:
+            configMapKeyRef:
+              name: game-demo           # El confimap desde donde vienen los valores
+              key: player_initial_lives # La key que vamos a usar
+        - name: UI_PROPERTIES_FILE_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: game-demo
+              key: ui_properties_file_name
+      volumeMounts:
+      - name: config
+        mountPath: "/config"
+        readOnly: true
+  volumes:
+    - name: config
+      configMap:
+        name: game-demo # el nombre del configmap que queremos montar
+        items: # Un arreglo de keys del configmap para crear como archivos
+        - key: "game.properties"
+          path: "game.properties"
+        - key: "user-interface.properties"
+          path: "user-interface.properties"
+```
+
+
+
+
+
+## Secrets
+
+Los los valores secretos van codificados en base64
+
+
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: db-credentials
+type: Opaque
+data: 
+  username: YWRtaW4=                # 'admin'
+  password: c3VwM3JwYXNzdzByZA==    # 'sup3rpassw0rd'
+
+# Esto se puede crear a mano:
+# kubectl create secret generic db-credentials --from-literal=username=admin --from-literal=password=sup3rpassw0rd
+# Docs: https://kubernetes.io/es/docs/concepts/configuration/secret/
+```
+
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:alpine
+    env:
+    - name: MI_VARIABLE
+      value: "pelado"
+    - name: MYSQL_USER
+      valueFrom:
+        secretKeyRef:
+          name: db-credentials
+          key: username
+    - name: MYSQL_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: db-credentials
+          key: password
+    ports:
+    - containerPort: 80
+```
+
+## Kustomization
+
+
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+commonLabels:
+  app: ejemplo
+
+resources:
+- 15-pod-secret.yaml
+
+secretGenerator:
+- name: db-credentials
+  literals:
+  - username=admin
+  - password=secr3tpassw0rd!
+
+images:
+- name: nginx
+  newTag: latest
+```
+
+## logs y stern
+
+```yaml
+kubectl logs -f nombre_completo_pod
+```
+
+
+
+stern requiere instalación
+
+```yaml
+stern parte_nombre
+```
 
 
 
