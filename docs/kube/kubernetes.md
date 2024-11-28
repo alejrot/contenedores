@@ -807,6 +807,28 @@ stern parte_nombre
 ```
 
 
+## Base64
+
+```bash
+echo admin | base64   # 'YWRtaW4K'
+echo c3VwM3JwYXNzdzByZA== | base64 -d      # 'sup3rpassw0rd'
+```
+
+
+
+## Kubesealed
+
+[Kubesealed - Cifrando secretos en Kubernetes](https://www.youtube.com/watch?v=YuKAiy0Olc0)
+
+
+## Helm
+
+
+[HELM: INSTALÁ WORDPRESS con 1 COMANDO en KUBERNETES](https://youtu.be/CPjfb-I_BKU)
+
+
+[GitHub de Helm](https://github.com/helm/helm/releases)
+
 
 ## Referencias
 
