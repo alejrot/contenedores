@@ -1,0 +1,34 @@
+---
+tags:
+#   - Docker
+#   - Podman
+  # - MarkDown
+  - Kubernetes
+#   - Bash
+---
+
+
+
+# Kustomization
+
+
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+commonLabels:
+  app: ejemplo
+
+resources:
+- 15-pod-secret.yaml
+
+secretGenerator:
+- name: db-credentials
+  literals:
+  - username=admin
+  - password=secr3tpassw0rd!
+
+images:
+- name: nginx
+  newTag: latest
+```

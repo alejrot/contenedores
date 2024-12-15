@@ -1,5 +1,5 @@
 
-
+<!-- 
 # Kubernetes
 
 
@@ -16,9 +16,9 @@ Esto permite:
 
 
 
-Recursos recomendados: [Libros de SRE de Google](https://sre.google/books/)
+Recursos recomendados: [Libros de SRE de Google](https://sre.google/books/) -->
 
-
+<!-- 
 Kubernetes es **declarativo**.
 El desarrollador crea un *manifiesto* 
 con el cual Kubernetes levanta un *pod*,
@@ -36,16 +36,18 @@ Si alguno de los workers cae entonces su pod se pasará a otro worker.
 
 
 ## Componentes
+ -->
 
 
-
+<!-- 
 ## Proveedores
 
 Proveedores de Cloud para Kubernetes:
 
 DigitalOcean, AWS, GoogleCloud, Linode, etc.
+-->
 
-
+<!-- 
 ## Kubectl
 
 Es el cliente de Kubernetes
@@ -77,7 +79,10 @@ choco install minikube
 ```bash
 minikube start
 ```
+ -->
 
+
+<!-- 
 ## Conexion remota
 
 En caso de usar un servicio de cloud hay que descargar un archivo de configuraciones, credenciales, etc. desde la página web del servicio.
@@ -96,9 +101,9 @@ y la conexión se hace con el comando `get nodes`
 kubectl get nodes
 ```
 
+ -->
 
-
-
+<!-- 
 ## Comandos
 
 ....
@@ -110,7 +115,12 @@ kubectl  config get-contexts
 
 Recomendado: [Lens (IDE para Kubernetes)](https://k8slens.dev)
 
+ -->
 
+
+
+
+<!-- 
 ## Manifiestos (recursos)
 
 ### Namespaces
@@ -131,7 +141,7 @@ kubectl get ns
 
 
 Los *namespaces* que comienzan con `kube` son reservados para las herramientas de Kubernetes. 
-<!-- e incluyen información de la -->
+
 
 ### pods
 
@@ -164,11 +174,14 @@ Cierre manual de un pod particular
 ```bash
 kubectl -n nombre_espacio delete pod nombre_pod 
 ```
+-->
+
+
 <!-- 
 
 El pod cerrado debe reiniciarse automáticamente, aunque con un nombre ligeramente distinto.
  -->
-
+<!-- 
 
 ### Crear pod
 
@@ -317,9 +330,9 @@ El manifiesto de un pod preexistente se consulta así:
 
 ```bash
 kubectl get pod nginx -o yaml
-```
+``` -->
 
-
+<!-- 
 ## Deployment
 
 El manifiesto del tipo `Deployment` permite a Kubernetes
@@ -348,9 +361,10 @@ spec:               # especificaciones del despliegue
 
 La configuración de los contenedores internos es igual a la usada con los pods.
 
-Si alguno de los pods creado es eliminado se creará uno nuevo automáticamente.
+Si alguno de los pods creado es eliminado se creará uno nuevo automáticamente. 
+-->
 
-
+<!-- 
 ## DaemonSet
 
 Los pods del tipo `DaemonSet` son desplegados en todos los nodos, uno por nodo.
@@ -374,6 +388,10 @@ spec:
       containers:
         # ...
 ```
+ -->
+
+
+<!-- 
 
 ## StatefulSet
 
@@ -450,7 +468,7 @@ kubectl delete sts nombre_sts
 ```bash
 kubectl delete pvc nombre_pvc
 ```
-
+ -->
 
 
 
@@ -461,7 +479,7 @@ kubectl delete pvc nombre_pvc
 
 
 
-
+<!-- 
 
 ## Servicios
 
@@ -592,8 +610,9 @@ spec:
   selector:
     role: hello
 ```
+-->
 
-
+<!-- 
 ## Ingress
 
 `Ingress` permite el acceso a los servicios mediante el path de la URL.
@@ -648,8 +667,10 @@ Una vez creado el manifiesto *ingress* el funcionamiento se puede verificar con 
 ```yaml
 curl http://dirección_ip/v1
 curl http://dirección_ip/v2
-```
+``` -->
 
+
+<!-- 
 
 ## ConfigMap
 
@@ -715,10 +736,10 @@ spec:
         - key: "user-interface.properties"
           path: "user-interface.properties"
 ```
+ -->
 
 
-
-
+<!-- 
 
 ## Secrets
 
@@ -767,7 +788,9 @@ spec:
     ports:
     - containerPort: 80
 ```
+-->
 
+<!-- 
 ## Kustomization
 
 
@@ -790,7 +813,11 @@ secretGenerator:
 images:
 - name: nginx
   newTag: latest
-```
+``` 
+-->
+
+
+<!-- 
 
 ## logs y stern
 
@@ -833,4 +860,5 @@ echo c3VwM3JwYXNzdzByZA== | base64 -d      # 'sup3rpassw0rd'
 ## Referencias
 
 
-[Pelado Nerd - KUBERNETES De NOVATO a PRO! (CURSO COMPLETO EN ESPAÑOL)](https://www.youtube.com/watch?v=DCoBcpOA7W4)
+[Pelado Nerd - KUBERNETES De NOVATO a PRO! (CURSO COMPLETO EN ESPAÑOL)](https://www.youtube.com/watch?v=DCoBcpOA7W4) 
+-->

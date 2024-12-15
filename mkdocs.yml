@@ -52,8 +52,8 @@ theme:
       postgresql: simple/postgresql
       mariadb: simple/mariadb
       # mariadb: simple/mariadbfoundation
-      mongodb: simple/mongodb
-
+      mongodb:  simple/mongodb
+      k8s:      simple/kubernetes
  
   features:
     # codigo y pestañas
@@ -232,7 +232,7 @@ extra:
     PostgreSQL:  postgresql
     MariaDB: mariadb
     MongoDB: mongodb
-
+    Kubernetes: k8s
 
 
 nav:
@@ -261,6 +261,19 @@ nav:
     - Pods:       podman/pods.md
     # - Volumenes:  podman/volumenes.md
 
+  - Kubernetes:
+    # - Apunte:           k8s/kubernetes.md
+    - Introducción:     k8s/intro.md
+    - Kubectl y complementos:      k8s/cliente.md
+    - Manifiesto:       k8s/manifiesto.md
+    - Servicios:        k8s/servicios.md
+    - Deployment:       k8s/deployment.md
+    - DaemonSet:        k8s/daemonset.md
+    - StatefulSet:      k8s/statefulet.md
+    - Ingress:          k8s/ingress.md
+    - ConfigMap:        k8s/configmap.md
+    - Secrets:          k8s/secrets.md
+    - Kustomization:    k8s/kustomization.md
 
   - Tags: tags.md
 
