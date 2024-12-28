@@ -17,6 +17,7 @@ El orquestador se encarga de gestionar múltiples servidores a la vez,
 a los cuales les hace ejecutar un conjunto de contenedores predefinido.
 
 Esto permite:
+
 - repartir el procesamiento entre varios servidores;
 - dar confiabilidad a los servicios mediante la redundancia de servidores;
 - gestionar los topes de recursos dedicados en cada servidor: uso de CPU, memoria RAM, etc;

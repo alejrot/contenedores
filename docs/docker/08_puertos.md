@@ -28,7 +28,7 @@ tags:
 
 # Puertos
 
-## Puertos 
+## Introducción 
 
 
 
@@ -40,26 +40,38 @@ implementando *sockets* ("zócalos").
 Los *sockets* se componen por una dirección IP y por un número de puerto. 
 Cada imagen tiene un número de puerto preasignado, 
 el cual es heredado del software interno 
-y cuyo contenedor hereda tabién de manera predeterminada.  
+y cuyo contenedor hereda también de manera predeterminada.  
 Por este motivo varios contenedores activos pueden heredar un mismo número de puerto, 
 por ejemplo si se manejan imágenes de un mismo *framework* en distintas versiones 
 o si se trata de una misma imagen siendo usada para varios programas distintos. 
-Para evitar ambigüedades y poder comunicarse con todos ellos los puertos de los contenedores se pueden “mapear” a distintos puertos del sistema anfitrión.
+
+<!-- Para evitar ambigüedades y poder comunicarse con todos ellos los puertos de los contenedores se pueden “mapear” a distintos puertos del sistema anfitrión. -->
 
 
 
 ## Port Mapping
 
 
-Dos o más imágenes activas pueden tener un mismo número de puerto *huesped*.
+Dos o más imágenes activas pueden tener un mismo número de puerto *huesped*,
+en tanto que dos contenedores activos 
+no pueden tener un mismo número de puerto para comunicarse con el *host*. 
+El *port mapping* o mapeo de puertos consiste en asignar números de puerto a cada contenedor para prevenir conflictos entre ellos.
 
-Dos contenedores activos no pueden tener un mismo número de puerto para comunicarse con el *host*. 
+
+<!-- 
+Crea el contenedor ya mapeado al puerto host deseado. (  `-p`: *publish* ).  
+-->
 
 
+## Sintaxis
 
-Crea el contenedor ya mapeado al puerto host deseado. (  `-p`: *publish* ). 
-**Importante:**
-no poner espacios entre números de puerto y signo `:`.
+El mapeo se implementa con la opción `-p` (*publish*) y consta de:
+
+- El número de puertos para el anfitrión;
+- El número de puerto de la imagen. 
+
+La sintaxis es la siguiente:
+
 
 === "Docker"
 
@@ -73,10 +85,15 @@ no poner espacios entre números de puerto y signo `:`.
     podman create -p puerto_anfitrion:puerto_imagen --name nombre_contenedor nombre_imagen
     ```
 
+
+**Importante:**
+no poner espacios entre números de puerto y signo `:`.
+
+
 !!! example "Material for MkDocs"
 
     Este [framework](https://hub.docker.com/r/squidfunk/mkdocs-material) que renderiza documentos en formato Markdown implementa su *live server* (servidor para pruebas) locales el puerto 8000. 
-    Por ello, los contenedores creados para implementar dicho server deben mapear al puerto 8000:
+    Por ello, los contenedores creados para implementar dicho server deben mapear al puerto `8000`:
 
     === "Docker"
 
@@ -94,8 +111,9 @@ no poner espacios entre números de puerto y signo `:`.
         podman create --name live_server -p puerto_host:8000 --security-opt label=disable -v ${PWD}:/docs mkdocs-material
         ```
 
-    **Aclaración:** la opción `-v ${PWD}:/docs` es propia del framework.
+    **Aclaración:** la opción adicional `-v ${PWD}:/docs` tiene que ver con el uso de volumenes.
     Es la ruta relativa a los documentos internos del proyecto actual.
+    
 
 
 

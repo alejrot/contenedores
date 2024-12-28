@@ -236,7 +236,7 @@ extra:
 
 
 nav:
-  - Indice: index.md
+  - Introducción: index.md
   - Docker & Podman:
     - Introducción:               docker/01_intro.md
     - Virtualización:             docker/02_virtualizacion.md
@@ -250,19 +250,17 @@ nav:
     - Redes Bridge:               docker/10_redes.md
     - Volumenes:                  docker/13_volumes.md
     - Inspeccionar metadatos:     docker/14_inspect.md
+
+    - Pods (podman):    podman/pods.md
+
+  - Archivo Dockerfile:
     - Dockerfile:                 docker/11_dockerfile.md
 
-  - Pendientes:
+  - Archivo Compose:
     - Docker Compose:     docker/12_compose.md
 
 
-
-  - Podman:
-    - Pods:       podman/pods.md
-    # - Volumenes:  podman/volumenes.md
-
   - Kubernetes:
-    # - Apunte:           k8s/kubernetes.md
     - Introducción:     k8s/intro.md
     - Kubectl y complementos:      k8s/cliente.md
     - Manifiesto:       k8s/manifiesto.md

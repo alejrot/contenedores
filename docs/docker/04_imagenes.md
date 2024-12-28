@@ -127,8 +127,8 @@ Las imágenes se eliminan del disco con el comando `rm`:
 
 === "Docker"
 
-    ```bash
-    docker image rm nombre-imagen:numero-version
+    ```bash title="Eliminar imagen local"
+    docker image rm nombre_imagen:numero_version
     ```
 === "Podman"
 
