@@ -27,6 +27,16 @@ tags:
 
 # Pods
 
+Las vainas o (*pods*) son una especie de contenedores auxiliares que sirven para englobar múltiples contenedores internos,
+creando unidades funcionales completas.
+
+Podman permite la creación manual de pods
+en tanto que Docker no.
+
+Por otra parte,
+Kubernetes crea y usa *pods* de forma automática: un *pod* por cada "nodo" (servidor físico o lógico) dedicado al procesamiento del software desplegado.
+
+
 
 ## Crear pods
 

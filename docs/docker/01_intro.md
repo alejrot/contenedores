@@ -37,6 +37,10 @@ tags:
 [Aprende Docker ahora! curso completo gratis desde cero!](https://www.youtube.com/watch?v=4Dko5W96WHg)
 
 
+[DOCKER De NOVATO a PRO! (CURSO COMPLETO EN ESPAÑOL)](https://youtu.be/CV_Uf3Dq-EU?list=PLEI4UgZ2UclHp7pugJExZhRUGBuNhMGsN&t=1166)
+
+
+
 [Repositorio de ejemplo](https://github.com/nschurmann/mongoapp-curso-docker)
 
 

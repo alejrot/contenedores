@@ -26,7 +26,7 @@ tags:
 ---
 
 
-# Imágenes
+# Imágenes Preconstruidas
 
 
 Las imágenes son los componentes de software encapsulados,

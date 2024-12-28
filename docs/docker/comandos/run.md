@@ -35,6 +35,9 @@ Este comando combina varias acciones:
 - Crea un contenedor que incluye la imagen elegida (`create`);
 - Inicia el contenedor creado (`start`).
 
+`run` funciona como una variante simplificada de `create` 
+y por ello acepta todas sus opciones de configuración.
+
 <!-- 
 Esta instrucción no devuelve el control al usuario a menos que termine o se cancele. 
 Si se repite el comando varias veces se crean varios contenedores parecidos, uno por comando. 

@@ -1,6 +1,6 @@
 # Extras
 
-
+<!-- 
 ## Nombrar imagenes 
 
 las imágenes ya creadas se renombran con el comando `tag`:
@@ -8,7 +8,7 @@ las imágenes ya creadas se renombran con el comando `tag`:
 ```
 docker tag nombre_actual_imagen   nuevo_nombre_imagen:version
 docker tag id_imagen              nuevo_nombre_imagen:version
-```
+``` -->
 
 <!-- 
 Se indica el nombre de nuestra imagen personalizada, 
@@ -21,7 +21,7 @@ docker tag <grupo_imagenes> <mi_imagen>:<version>
 si nuestra imagen es una actualización de NodeJS la etiquetamos como NodeJS de modo que aparezca publicada con las demás versiones. 
 -->
 
-
+<!-- 
 ## Compartir imagen en Docker Hub
 
 Nos identificamos para que el servidor nos permita subir la imagen a nuestro nombre
@@ -40,10 +40,15 @@ docker push <mi_imagen>:<version>
 INFO: Docker Hub da alojamiento gratuito a las imágenes
 que sean compartidas públicamente por los usuarios.
 
+ -->
+<!-- 
+[DOCKER De NOVATO a PRO! (CURSO COMPLETO EN ESPAÑOL)](https://youtu.be/CV_Uf3Dq-EU?list=PLEI4UgZ2UclHp7pugJExZhRUGBuNhMGsN&t=1166) 
+-->
 
+
+
+<!-- 
 ## Ejecutar aplicaciones internas
-
-[DOCKER De NOVATO a PRO! (CURSO COMPLETO EN ESPAÑOL)](https://youtu.be/CV_Uf3Dq-EU?list=PLEI4UgZ2UclHp7pugJExZhRUGBuNhMGsN&t=1166)
 
 Ejecuta un comando o aplicación interno del contenedor:
 
@@ -62,7 +67,8 @@ Ejemplo: abrir una shell del contenedor y explorar archivos internos
 ```bash
 docker exec -it <contenedor> sh  
 ls
-```
+``` 
+-->
 
 ## CMD, RUN y ENTRYPOINT en Dockerfile
 
@@ -77,6 +83,7 @@ Ejemplo:
     ```
 - `CMD`: ejecuta una rutina interna especifica al arrancar el contenedor.
 Ejemplo: un servidor hecho en Python
+
     ```dockerfile
     CMD ["python", "/usr/src/myapp/server.py"]
     ```
@@ -95,13 +102,14 @@ El contenedor ejecuta la rutina que se le indique como argumento:
     docker run contenedor-python  ruta_rutina.py
     ```
 
-
+<!-- 
 ## `build` con y sin nombre
 
 ```bash
 docker build  .
 podman build -t nombre_imagen  .
-```
+``` 
+-->
 
 
 ## `run` con ruta a volumnen

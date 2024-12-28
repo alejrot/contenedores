@@ -6,13 +6,13 @@ site_description: "Documentacion sobre contenedores de software: Docker, Podman,
 site_url: https://alejrot.github.io/contenedores/
 
 # # Repositorio
-# repo_url: https://github.com/alejrot/contenedores
-# repo_name: contenedores
+repo_url: https://github.com/alejrot/contenedores
+repo_name: contenedores
 # edit_uri: edit/master/docs/
 
+copyright: Copyright &copy; 2025 Marcelo Marot Rosas
 
-
-theme: 
+theme:
   name: material
   # favicon: images/favicon.png   # no anda
   icon:
@@ -79,7 +79,6 @@ theme:
     - toc.follow
     # - toc.integrate   # integra indice derecho (secciones) adentro del izquierdo (rutas)
     - navigation.top  # boton emergente para volver al inicio  - aparece al intentar subir con el scroll
-
     # Pie de pagina
     - navigation.footer
 
@@ -241,23 +240,27 @@ nav:
     - Introducción:               docker/01_intro.md
     - Virtualización:             docker/02_virtualizacion.md
     - Escritorio:                 docker/03_desktop.md
-    - Imágenes:                   docker/04_imagenes.md
-    - Contenedores:               docker/05_contenedores.md
-    - Puertos:                    docker/08_puertos.md
-    - Comando Run:                docker/09_run.md
-    - Logs:                       docker/06_logs.md
-    - Variables de Entorno:       docker/07_variables_entorno.md
-    - Redes Bridge:               docker/10_redes.md
-    - Volumenes:                  docker/13_volumes.md
-    - Inspeccionar metadatos:     docker/14_inspect.md
 
-    - Pods (podman):    podman/pods.md
+    - Comandos:
+      - docker/comandos/imagenes.md
+      - docker/comandos/contenedores.md
+      - docker/comandos/puertos.md
+      - docker/comandos/run.md
+      - docker/comandos/logs.md
+      - docker/comandos/variables_entorno.md
+      - docker/comandos/redes.md
+      - docker/comandos/volumes.md
+      - docker/comandos/exec.md
+      - docker/comandos/inspect.md
+      - docker/comandos/build.md
 
-  - Archivo Dockerfile:
-    - Dockerfile:                 docker/11_dockerfile.md
+      - Pods (sólo Podman):    podman/pods.md
 
-  - Archivo Compose:
-    - Docker Compose:     docker/12_compose.md
+    - Archivo Dockerfile:
+      - Dockerfile:                 docker/dockerfile/dockerfile.md
+
+    - Archivo Compose:
+      - Docker Compose:     docker/compose/compose.md
 
 
   - Kubernetes:

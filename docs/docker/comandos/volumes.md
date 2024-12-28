@@ -46,7 +46,7 @@ El gestor de contenedores elige la ubicación automáticamente.
 son similares a los volúmenes anónimos pero pueden ser referenciados por múltiples contenedores gracias a su nombre, 
 permitiendo su compartimento y reutilización.
 - **De anfitrión o host:**
-en estos volúmenes se indica qué carpeta montar y adonde montarla.
+en estos volúmenes se indica qué carpeta montar y adónde montarla.
 
 
 ## Gestionar volumenes
@@ -122,7 +122,7 @@ En el ejemplo, el punto de montaje queda:
     `/home/USUARIO/.local/share/containers/storage/volumes/`
 
 
-Más información sobre el [comando inspect](14_inspect.md).
+	Más información sobre el [comando inspect](inspect.md).
 
 
 ### Borrar voluemn
@@ -177,41 +177,47 @@ Este comando lista los volumenes susceptibles de ser borrados y pide confirmaci�
 
 ## Crear contenedores con volumenes
 
-### Agregado de volumen
+La forma de configurar el agregado de volumenes es mediante la opción `-v`. 
+Con ella se especifican:
 
-La forma más simple de configurar el agregado de volumenes es mediante la opción `-v`. 
-Con ella se especifican el nombre del volumen 
-y la ruta interna del contenedor sobre la que se debe montar el volumen.
+- el nombre del volumen 
+o la ruta del directorio del anfitrión;
+- la ruta interna del contenedor sobre la que se debe montar el volumen.
+
+Se permite la asignación de múltiples volumenes al mismo contenedor usando repetidas veces la opcíón `-v`.
+
+
+###  Volumenes con nombre
+
+El nuevo contenedor puede acceder a un volumen preexistente en base a su nombre:
 
 === "Docker"
 
 	```bash title="montaje de volumen - solo lectura"
-	docker create -v nombre_volumen=ruta_montaje_interna  nombre_imagen
+	docker create -v nombre_volumen:ruta_montaje_interna  nombre_imagen
 	```
-
 
 === "Podman" 
 
 	```bash title="montaje de volumen - solo lectura"
-	podman create -v nombre_volumen=ruta_montaje_interna  nombre_imagen
+	podman create -v nombre_volumen:ruta_montaje_interna  nombre_imagen
 	```
 
+### Ruta de host
 
-!!! tip "TIP: rutas para bases de datos"
+Otra manera de implementar el volumen es indicando directamente la ruta del sistema anfitrión al que el contenedor tendrá acceso: 
 
-	Los gestores de bases de datos tienen ciertas rutas predefinidas para guardar la información. 
-	En los sistemas Linux estas rutas son:
+=== "Docker"
 
-	|Base de datos| ruta de montaje|
-	|---|---|
-	|**MySQL** |`/var/lib/mysql`|
-	|**PostgreSQL**| `/var/lib/postgresql/data`|
-	|**MongodB** |`/data/db`|
+	```bash title="montaje de volumen - solo lectura"
+	docker create -v ruta_host:ruta_montaje_interna  nombre_imagen
+	```
 
-	Dado que las imágenes de Docker y Podman son basadas en distribuciones Linux, estas mismas rutas son las usadas adentro del contenedor.
+=== "Podman" 
 
-
-
+	```bash title="montaje de volumen - solo lectura"
+	podman create -v ruta_host:ruta_montaje_interna  nombre_imagen
+	```
 
 ### Sólo lectura
 
@@ -220,8 +226,10 @@ Los volumenes se pueden agregar a los contenedores con la opción `ro` (*read on
 
 
 ```bash	title="montaje de volumen - solo lectura"
-podman create -v nombre_volumen=ruta_montaje_interna:ro  nombre_imagen
+podman create -v nombre_volumen:ruta_montaje_interna:ro  nombre_imagen
 ```
+
+
 
 
 
@@ -291,6 +299,24 @@ Y para corroborar la persistencia de datos hay que:
 
 Los datos agregados o modificados deben seguir allí.
 
+!!! info "TIP: rutas para bases de datos"
+
+	Los gestores de bases de datos tienen ciertas rutas predefinidas para guardar la información. 
+	En los sistemas Linux estas rutas son:
+
+	|Base de datos| ruta de montaje|
+	|---|---|
+	|**MySQL / MariaDB** |`/var/lib/mysql`|
+	|**PostgreSQL**| `/var/lib/postgresql/data`|
+	|**MongodB** |`/data/db`|
+
+	Dado que las imágenes de Docker y Podman son basadas en distribuciones Linux, estas mismas rutas son las usadas adentro del contenedor.
+
+
+!!! tip "Rutinas en volumenes"
+
+	Una posibilidad que permiten los volumenes es pasar las rutinas a ejecutar por adentro de ellos. 
+	Esto evita tener que reconstruir los containers cada vez que se hagan cambios en las rutinas.
 
 
 ## Referencias

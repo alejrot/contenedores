@@ -30,10 +30,21 @@ tags:
 
 # Archivo Dockerfile
 
-El archivo Dockerfile nos permite crear nuevas imágenes en base a una preexistente donde se incluyan nuevos comandos y aplicaciones.
-Este archivo debe mantener el nombre `Dockerfile` para ser utilizado y no tiene extensión de archivo.
+## Introducción
 
-### Sintaxis
+El archivo Dockerfile nos permite crear nuevas imágenes en base a una preexistente donde se incluyan nuevos comandos y aplicaciones.
+Este archivo suele llamarse `Dockerfile` para ser utilizado y no tiene extensión de archivo.
+
+
+
+!!! info "Containerfile vs Dockerfile"
+
+    `Dockerfile` es el nombre más habitual para el archivo de creación de imagen debido a la gran popularidad de Docker; 
+    sin embargo la norma es el uso del nombre genérico `Containerfile`.
+
+
+
+## Sintaxis
 
 La sintaxis del `Dockerfile` es la siguiente:
 
@@ -55,20 +66,38 @@ CMD [ "comando" , "ruta_ejecutable" ]
 
 La función resumida de cada comando es la siguiente:
 
-|Cláusula| Uso|
-|:---|:---|
-|`FROM`| Elige una imagen preexistente que servirá de referencia|
-|`RUN`| Ejecuta comandos en Bash para crear directorios e instalar software |
-|`COPY`| Copia archivos del *host* a la futura imagen|
-|`WORKDIR`| Cambia la ruta interna del entorno de ejecución |
-|`EXPOSE`| Especifica el nº de puerto para conectar con la imagen|
-|`CMD`| Ordena la ruta y el nombre del comando a ejecutar |
+|Cláusula| Argumentos | Uso|
+|:---|:---:|:---|
+|`FROM`| `nombre_imagen:tag` | Elige una imagen preexistente que servirá de referencia|
+|`RUN`| `comando_completo` | Ejecuta comandos en Bash para crear directorios e instalar software |
+|`COPY`|`ruta_host  ruta_interna`| Copia archivos del *host* a la futura imagen|
+|`WORKDIR`|`ruta_trabajo`| Cambia la ruta interna del entorno de ejecución |
+|`EXPOSE`|`numero_puerto`| Especifica el Nº de puerto para conectar con la imagen (informativo)|
+|`CMD`|`[comando, rutina_interna]`| Llama al ejecutable interno y le especifica una rutina interna como argumento |
+|`ENTRYPOINT`|`[comando]`| Llama al ejecutable interno pero exigiendo uno o varios argumentos externos|
+|`ENV`| `nombre_variable  valor`| Define variables de entorno para la imagen |
+|`USER`|`usuario_o_id`| Define el usuario por su nombre o por su *id* |
+
 
 No es obligatorio especificar todos los campos,
 sino que estos se indican o no 
 según se necesite.
 
 
+Por ejemplo, `CMD` y `ENTRYPOINT` tienen usos alternativos:
+
+ <div class="grid" markdown>
+
+```dockerfile title="Rutina única - CMD"
+# Servidor Python 
+CMD ["python", "/usr/src/myapp/server.py"]
+```
+
+```dockerfile  title="Rutina externa - ENTRYPOINT"
+# Intérprete Python encapsulado 
+ENTRYPOINT ["python"]
+```
+ </div>
 
 !!! tip "Directorio para ejecutables"
 
@@ -115,50 +144,6 @@ CMD [comando , ejecutable]
 
 
 
-### Crear imágenes modificadas
+## Referencias
 
-La imagen se construye con el comando `build`:
-
-=== "Docker"
-
-    ```bash
-    docker build -t nombre_imagen:numero_version  ruta_Dockerfile
-    ```
-    
-=== "Podman" 
-
-    ```bash   
-    docker build -t nombre_imagen:numero_version  ruta_Dockerfile
-    ```
-
-Con él se construye una imagen a partir del archivo Dockerfile
-disponible en la ruta indicada,
-la cual puede ser absoluta o relativa.
-
-Si la terminal ya está ubicada en el directorio raíz de la aplicación hay que poner un punto: 
-
-
-=== "Docker"
-
-    ```bash
-    cd ruta_Dockerfile
-    docker build -t nombre_imagen:numero_version  .
-    ```
-
-=== "Podman" 
-
-    ```bash
-    cd ruta_Dockerfile
-    podman build -t nombre_imagen:numero_version  .
-    ```
-
-
-La imagen creada podrá ser utilizada como cualquier imagen prefabricada 
-para crear nuevos contenedores.
-
-
-
-Ejemplo: `docker build -t miapp:1 .`
-
-
-
+[Docker Docs - Writing a Dockerfile](https://docs.docker.com/get-started/docker-concepts/building-images/writing-a-dockerfile/)

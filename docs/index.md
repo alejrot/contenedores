@@ -2,17 +2,20 @@
 
 # Contenedores
 
-Los contenedores facilitan el desarrollar,
-compartir y poner en marcha el nuevo software minimizando los problemas de dependencias, 
-actualizaciones etc. 
 Los contenedores son una versión simplificada de las máquinas virtuales, 
 permitiendo la ejecución de un kernel (sistema operativo) y software adicional (frameworks, bibliotecas, etc )
 dentro de un sistema con otro sistema operativo. 
 
+El uso de contenedores facilita el desarrollar,
+compartir y poner en marcha el nuevo software minimizando los problemas de dependencias, 
+actualizaciones etc. 
+
+<!-- 
 El uso de contenedores mejora la confiabilidad de los despliegues de software en servidores 
 e incluso en entornos locales, 
 al permitir una gestión más simple del entorno de ejecución
-y prevenir conflictos posibles entre distintas versiones de las dependencias.
+y prevenir conflictos posibles entre distintas versiones de las dependencias. 
+ -->
 
 
 ## Docker y Podman
