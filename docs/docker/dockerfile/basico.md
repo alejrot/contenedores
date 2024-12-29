@@ -26,8 +26,6 @@ tags:
 #   - MongoDB
 ---
 
-
-
 # Archivo Dockerfile
 
 ## Introducción

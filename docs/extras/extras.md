@@ -111,7 +111,7 @@ podman build -t nombre_imagen  .
 ``` 
 -->
 
-
+<!-- 
 ## `run` con ruta a volumnen
 
 Es la opción  `-v`
@@ -129,12 +129,12 @@ Esto evita tener que reconstruir los containers cada vez que se hagan cambios en
 
 
 (REVISAR)
-
+ -->
 
 
 ## Multiples contenedores
 
-
+<!-- 
 Cuando hay que conectar varios contenedores interdependientes conviene usar las *networks*.
 
 ```bash
@@ -145,8 +145,12 @@ Al crear un contenedor nuevo se incluyen las opciones:
 
 - `--network` :   especifica el nombre de red (preexistenta) a conectar;
 - `--network-alias`: funciona como un apuntador de la red al contenedor destino de la red
+ -->
 
-Las redes de Docker no necesitan configuración de puertos para funcionar.
+
+<!-- 
+Las redes de Docker no necesitan configuración de puertos para funcionar. 
+-->
 
 INFO: en los archivos `docker-compose.yml` las redes y sus alias se crean automáticamente
 

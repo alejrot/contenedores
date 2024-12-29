@@ -252,12 +252,12 @@ nav:
       - docker/comandos/volumes.md
       - docker/comandos/exec.md
       - docker/comandos/inspect.md
-      - docker/comandos/build.md
 
       - Pods (sólo Podman):    podman/pods.md
 
     - Archivo Dockerfile:
-      - Dockerfile:                 docker/dockerfile/dockerfile.md
+      - docker/dockerfile/basico.md
+      - docker/dockerfile/build.md
 
     - Archivo Compose:
       - Docker Compose:     docker/compose/compose.md

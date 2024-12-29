@@ -30,7 +30,7 @@ tags:
 
 
 A menudo es necesario modificar las imágenes preexistentes para poder crear las nuevas aplicaciones. 
-Para poder crearlas es indispensable crear primero los archivos de configuración, conocidos típicamente como Dockerfiles.
+Para poder crearlas es indispensable crear primero los archivos de configuración, conocidos típicamente como [archivos Dockerfile](basico.md).
 
 
 

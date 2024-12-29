@@ -79,3 +79,33 @@ El equipo de desarrollo y el de operaciones crean en conjunto una imagen.
 La imagen depende del *runtime* de Docker. 
 El proceso puede automatizarse con los pipelines  de los servicios de controladores de versión (github, BitBucket, etc).
 
+
+
+## Comandos
+
+En esta sección se explora el manejo por comandos 
+de los recursos disponibles tanto en Docker como en Podman. 
+
+
+[Ir a la sección de comandos](comandos/imagenes.md)
+
+
+## Dockerfile
+
+Los archivos Dockerfile son indispensables para crear nuevas imágenes.
+
+[Ir a la sección de Dockerfile](dockerfile/dockerfile.md)
+
+
+
+## Compose
+
+Los archivos Compose son la opción preferida para configurar nuevos contenedores
+tanto individuales como grupales.
+Apela al comando simplificado `compose` para la puesta en marcha.
+
+
+[Ir a la sección de Compose](compose/compose.md)
+
+
+
