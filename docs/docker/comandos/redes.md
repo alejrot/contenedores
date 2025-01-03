@@ -134,6 +134,13 @@ dig  alias-red
 El resultado es un informe de las direcciones IP, puertos,tipo de socket, etc. que usan los contenedores.
 
 
+!!! info  "DNS en networks"
+
+    Las networks que usan los gestores de contenedores
+    hacen uso de su propio servicio DNS (*Name Domain Server*) interno 
+    para completar las conexiones entre los contenedores.
+    Por eso no se especifican IPs ni puertos al incluirlas.
+
 
 
 ## Referencias

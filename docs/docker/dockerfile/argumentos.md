@@ -28,6 +28,9 @@ tags:
 # Argumentos
 
 Los argumentos permiten asignar valores variables a algunos parámetros.
+
+## Creación
+
 Se definen dentro del Dockerfile 
 con la orden `ARG` 
 y traen un valor predefinido:
@@ -39,7 +42,11 @@ FROM imagen_base:${VERSION}
 #...
 ```
 
-Esos valores pueden ser modificados durante la construcción de la imagen con la opción `--build-arg`:
+
+## Modificación
+
+Los valores de los argumentos
+pueden ser modificados durante la construcción de la imagen con la opción `--build-arg`:
 
 === "Docker"
 
@@ -53,3 +60,7 @@ Esos valores pueden ser modificados durante la construcción de la imagen con la
     podman build --build-arg VERSION=18.04 .
     ```
 
+
+## Visibilidad
+
+Cada variable debe ser redefinida en cada etapa (*stage*) implementada dentro del Dockerfile.
