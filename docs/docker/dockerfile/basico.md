@@ -26,13 +26,18 @@ tags:
 #   - MongoDB
 ---
 
-# Archivo Dockerfile
+# Configurar imágenes
 
-## Introducción
 
-El archivo Dockerfile nos permite crear nuevas imágenes en base a una preexistente donde se incluyan nuevos comandos y aplicaciones.
-Este archivo suele llamarse `Dockerfile` para ser utilizado y no tiene extensión de archivo.
 
+## Dockerfile
+
+Las imágenes no se crean ni modifican directamente mediante el uso de comandos,
+sino que se recurre al uso de un archivo de configuración especial. 
+Este archivo suele llamarse `Dockerfile` 
+y
+nos permite configurar nuevas imágenes en base a una preexistente donde se incluyan nuevos comandos y aplicaciones.
+El `Dockerfile` sirve de plantilla para el [comando build](build.md), el cual es el encargado de leer todas las configuraciones y volcarlas en una nueva imagen.
 
 
 !!! info "Containerfile vs Dockerfile"
@@ -123,11 +128,11 @@ Afecta al uso del comando o intérprete interno del futuro contenedor.
 
 ### `EXPOSE`
 
-En el Dockerfile , `EXPOSE` proporciona la metadata del puerto usado para la imagen. 
+En el Dockerfile, `EXPOSE` proporciona la metadata del puerto usado para la imagen. 
 No es obligatorio incluirlo; sin embargo
 es buena práctica incluirlo cuando la imagen usa puertos estáticos.
 
-!!! info "puertos"
+!!! info "Puertos IP"
 
     Los gestores de contenedores usan el protocolo IP 
     (número de IP + puerto) 

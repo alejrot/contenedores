@@ -255,13 +255,13 @@ nav:
 
       - Pods (sólo Podman):    podman/pods.md
 
-    - Archivo Dockerfile:
+    - Dockerfile:
       - docker/dockerfile/basico.md
       - docker/dockerfile/build.md
       - docker/dockerfile/optimizar.md
       - docker/dockerfile/argumentos.md
 
-    - Archivo Compose:
+    - Compose:
       - Docker Compose:     docker/compose/compose.md
 
 

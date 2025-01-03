@@ -135,9 +135,19 @@ Debe tenerse en cuenta que una misma imagen puede tener varias etiquetas en simu
 
 
 
-## Compartir imagen
+## Compartir imagen - `push`
 
-Nos identificamos para que el servidor nos permita subir la imagen a nuestro nombre. Para ello usamos el comando `login`:
+Los gestores de contenedores 
+implementan sus propio cliente local 
+para poder publicar nuestras imágenes online.
+Esto presupone que ya estamos registrados en eel servidor online.
+
+Para ello, 
+nos identificamos localmente con usuario y contraseña
+para que el cliente local pueda
+subir la imagen a nuestro nombre
+en el servidor. 
+Todo esto se realiza con el omando `login`:
 
 === "Docker"
 
