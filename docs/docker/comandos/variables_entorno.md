@@ -188,13 +188,13 @@ y al crear el contenedor ya no es necesario hacer la asignación, sino que con e
 
 
 
-## Archivos `.env`
+## Archivos de entorno
 
 
 Las variables de entorno que necesita el contenedor se pueden guardar en forma de archivo de texto con la extensión `.env`:
 
 
-```env
+```env title="Archivos .env - formato"
 VARIABLE_1=valor_1 
 VARIABLE_2=valor_2 
 ```
@@ -215,8 +215,9 @@ Gracias a la opción `--env-file` las variables de entorno se pueden adjuntar to
     podman create --env-file variables.env  nombre_imagen
     ```
 
-
+!!! info "Archivos `.env`"
     
+    El archivo con las variables de entorno suele ser llamado simplemente `.env`.
 
 
 
