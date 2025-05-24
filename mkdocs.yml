@@ -72,10 +72,10 @@ theme:
     # pestañas de contenido
     - navigation.tabs
     # - navigation.tabs.sticky
-    - navigation.sections
+    # - navigation.sections
     # - navigation.expand
     # - navigation.prune 
-    # - navigation.indexes 
+    - navigation.indexes 
     - toc.follow
     # - toc.integrate   # integra indice derecho (secciones) adentro del izquierdo (rutas)
     - navigation.top  # boton emergente para volver al inicio  - aparece al intentar subir con el scroll
@@ -92,30 +92,31 @@ theme:
 
 
   # soporte de idiomas
-  language: es    # Idioma predefinido
-  # direction: ltr
-
-
-  # Opciones de temas y colores
-  palette: 
-    # Cambio de paleta al modo claro
+  language: es
+  # Modos para la pagina
+  palette:
+    # Modo automático
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/lightbulb-auto
+        name: Cambia al modo claro
+    # Modo claro
     - media: "(prefers-color-scheme: light)"
       scheme: default
       toggle:
-        icon: material/lightbulb 
-        name: Cambia al modo oscuro 
-      # primary: indigo
-      # accent: blue
-      primary: red
-      accent: orange
-    # Cambio de paleta al modo oscuro
+        icon: material/lightbulb  
+        name: Cambia al modo oscuro
+      primary: blue grey
+      accent: blue
+    # Modo oscuro
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       toggle:
-        icon: material/lightbulb-outline    
-        name: Cambia al modo claro      # mensaje
-      primary: red
-      accent: orange
+        icon: material/lightbulb-outline
+        name: Cambia al modo automático
+      primary: blue grey
+      accent: blue
+
 
 markdown_extensions: 
   # "advertencias"
@@ -262,6 +263,16 @@ nav:
       - docker/dockerfile/argumentos.md
 
     - Compose:
+      - docker/compose/index.md
+      - docker/compose/basico.md
+      - docker/compose/comandos.md
+      - docker/compose/instalacion.md
+      - docker/compose/networks.md
+      - docker/compose/resumen.md
+      # - docker/compose/.md
+      # - docker/compose/.md
+
+
       - Docker Compose:     docker/compose/compose.md
 
 
