@@ -111,7 +111,7 @@ volumes:
 	[Stack Overflow - Difference between links and depends_on in docker_compose.yml](https://stackoverflow.com/questions/35832095/difference-between-links-and-depends-on-in-docker-compose-yml)
 
 
-
+<!-- 
 ## Ejecución
 
 ### Creación automática
@@ -138,7 +138,7 @@ docker-compose down		# versiones antiguas de Docker
 ```
 También elimina las redes comunes entre contenedores.
 
-
+ -->
 
 
 ## Rama desarrollo
@@ -165,6 +165,9 @@ services:
 
 Para operar con estos archivos se usa la opción `#!bash -f `del comando `#!bash docker compose`:
 
+
+
+<!-- 
 ### Creación automática
 
 
@@ -180,10 +183,7 @@ docker compose -f docker-compose-dev.yml up
 docker compose -f docker-compose-dev.yml  down
 ```
 
-
-
-
-
+ -->
 
 
 
