@@ -181,6 +181,8 @@ plugins:
   - tags:
       tags_file: tags.md
 
+  - pagetree
+
 
   # habilitacion por grupo 
   # grupo Nº1: servidor remoto ('Continuous Integration')

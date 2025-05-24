@@ -1,16 +1,4 @@
 
-DOCKER DOCS
-https://docs.docker.com/reference/compose-file/version-and-name/
-
-
-BUSYBOX
-
-https://www.docker.com/blog/use-cases-and-tips-for-using-the-busybox-docker-official-image/
-
-https://hub.docker.com/_/busybox
-
-
-
 # Sintaxis básica
 
 
@@ -25,8 +13,6 @@ name: nombre_proyecto  # (opcional)
 
 Este valor puede ser consultado con una variable de entorno llamada
 `COMPOSE_PROJECT_NAME`.
-
-
 
 ## Servicios
 
@@ -56,6 +42,22 @@ services:
 
 Dentro de cada bloque de servicio creado
 se definen los valores de los parámetros internos para cada contenedor.
+
+
+### Nombre de contenedor
+
+El parámetro opcional `container_name` permite elegir un nombre
+para cada contenedor.
+
+```yaml
+services:
+  nombre_servicio:
+    container_name: nombre_contenedor
+```
+Si este parámetro no es especificado
+entonces el gestor elige como nombre
+una variante del nombre del proyecto
+combinada con el nombre de servicio.
 
 
 
@@ -101,9 +103,6 @@ services:
 Este archivo sólo se utilizará la primera vez que se realice el despliegue.
 
 
-
-
-
 !!! tip "`image` vs `build`"
 
     Los parámetros `image` y `build` pueden usarse juntos
@@ -112,7 +111,7 @@ Este archivo sólo se utilizará la primera vez que se realice el despliegue.
 
 
 
-## Comandos
+### Comandos
 
 El campo `command` permite sobreescribir el comando (`CMD`)
 predefinido dentro del Dockerfile de la imagen usada,
@@ -132,9 +131,18 @@ name: comando_busybox
 
 services:
   contenedor_basico:
+    container_name: demo_busybox
     image: busybox:1.37.0-glibc
     command: echo "Me llamo '${COMPOSE_PROJECT_NAME}'"
 ```
 
 Más versiones de BusyBox: [Docker Hub](https://hub.docker.com/_/busybox)
 
+## Referencias
+
+[Docker Docs - Version and name top-level elements](https://docs.docker.com/reference/compose-file/version-and-name/)
+
+[Docker.com - How to Use the BusyBox Docker Official Image](https://www.docker.com/blog/use-cases-and-tips-for-using-the-busybox-docker-official-image/)
+
+
+[Docker Hub - BusyBox](https://hub.docker.com/_/busybox)

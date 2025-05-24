@@ -3,6 +3,7 @@ services:
 
   contenedores:
     build:  .
+    image:  mkdocs-local:contenedores
     container_name: contenedores
     ports:
       - "${PORT:-8000}:8000"

@@ -1,0 +1,9 @@
+name: "compose_basico"
+
+services:
+
+  contenedor_basico:
+    # container_name: demo_busybox
+    image: busybox:1.37.0-glibc
+    command: echo "Me llamo '${COMPOSE_PROJECT_NAME}'"
+
