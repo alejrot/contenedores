@@ -1,5 +1,5 @@
 
-name: demo_network
+name: demo_network_custom
 
 services:
 
@@ -8,8 +8,15 @@ services:
     container_name: cliente_curl
     command: curl server_banner:80 
     depends_on: server_banner
+    networks:
+      - red_custom
 
   server_banner:
     container_name: server_banner
     image: quay.io/libpod/banner
+    networks:
+      - red_custom
 
+
+networks:
+  red_custom:

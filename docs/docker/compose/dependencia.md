@@ -80,9 +80,10 @@ el servicio debe completarse exitosamente.
 El parámetro `restart` ordena el reinicio del contenedor
 en cuanto sus servicio requeridos estén listos.
 
-
 Pr último, el parámetro `required` especifica si es obligatorio que el servicio apuntado haya sido arrancado o esté disponible.
-Si es seteado como `false` entonces el comando compose sólo advertirá en caso que el servicio requerido no está disponible o no inició.
+Si es seteado como `false`
+entonces el comando `compose` sólo advertirá
+en caso que el servicio requerido no está disponible o no inició.
 
 
 

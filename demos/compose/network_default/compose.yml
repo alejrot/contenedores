@@ -1,0 +1,15 @@
+
+name: demo_network_default
+
+services:
+
+  cliente:
+    image: registry.fedoraproject.org/fedora
+    container_name: cliente_curl
+    command: curl server_banner:80 
+    depends_on: server_banner
+
+  server_banner:
+    container_name: server_banner
+    image: quay.io/libpod/banner
+
