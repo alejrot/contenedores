@@ -1,0 +1,16 @@
+
+name: demo_depends_on
+
+services:
+
+  fin:
+    image: registry.fedoraproject.org/fedora
+    command: date +"%X"
+    depends_on: 
+      inicio:
+        condition: service_completed_successfully
+
+  inicio:
+    image: registry.fedoraproject.org/fedora
+    command: date +"%X"
+

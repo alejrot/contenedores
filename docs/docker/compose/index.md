@@ -46,3 +46,4 @@ Docker Compose aprovecha el archivo Dockerfile por defecto para completar la con
 
 
 
+[GitHub - The Compose Specification](https://github.com/compose-spec/compose-spec/blob/main/spec.md#long-syntax-1)

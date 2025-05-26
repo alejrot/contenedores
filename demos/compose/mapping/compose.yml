@@ -1,0 +1,7 @@
+
+name: demo_port_mapping
+
+services:
+  puerto_banner:
+    image: quay.io/libpod/banner
+    ports: "8081:80"

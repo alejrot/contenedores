@@ -92,6 +92,7 @@ volumes:
 	La etiqueta `version` está obsoleta y es ignorada.
 
 
+<!-- 
 !!! warning "`link` vs `depends_on`"
 
 	La opción `link`, usada para comunicar un servicio/contenedor con otro, está obsoleta y el Compose de Podman ya no la ejecuta arrojando un error.
@@ -109,6 +110,10 @@ volumes:
 
 	Más info:
 	[Stack Overflow - Difference between links and depends_on in docker_compose.yml](https://stackoverflow.com/questions/35832095/difference-between-links-and-depends-on-in-docker-compose-yml)
+
+ -->
+
+
 
 
 <!-- 

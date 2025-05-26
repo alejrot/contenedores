@@ -17,7 +17,8 @@ theme:
   # favicon: images/favicon.png   # no anda
   icon:
     #icono de pagina
-    logo: simple/markdown  
+    # logo: simple/markdown  
+    logo: simple/podman
     # logo: bootstrap/activity  # icono local 
     # iconos de avance y retroceso 
     previous: fontawesome/solid/angle-left
@@ -73,8 +74,8 @@ theme:
     - navigation.tabs
     # - navigation.tabs.sticky
     # - navigation.sections
-    # - navigation.expand
-    # - navigation.prune 
+    - navigation.expand
+    - navigation.prune 
     - navigation.indexes 
     - toc.follow
     # - toc.integrate   # integra indice derecho (secciones) adentro del izquierdo (rutas)
@@ -267,13 +268,15 @@ nav:
     - Compose:
       - docker/compose/index.md
       - docker/compose/basico.md
+      - docker/compose/mapping.md
+      - docker/compose/dependencia.md
+      - docker/compose/networks.md
+      # - docker/compose/resumen.md
+      - docker/compose/volumes.md
+      # - docker/compose/.md
+      # - docker/compose/.md
       - docker/compose/comandos.md
       - docker/compose/instalacion.md
-      - docker/compose/networks.md
-      - docker/compose/resumen.md
-      # - docker/compose/.md
-      # - docker/compose/.md
-
 
       - Docker Compose:     docker/compose/compose.md
 

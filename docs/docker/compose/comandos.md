@@ -5,48 +5,6 @@
 
 
 
-```bash
-
-```
-
-```bash
-
-```
-
-```bash
-
-```
-
-```bash
-
-```
-
-```bash
-
-```
-
-```bash
-
-```
-
-```bash
-```
-
-```bash
-```
-
-```bash
-```
-
-
-
-
-
-```bash
-```
-
-
-
 ## Ejecución
 
 ### Creación automática
