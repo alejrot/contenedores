@@ -45,3 +45,22 @@ podman info
 ``` bash
 podman compose up -d --build
 ```
+
+
+
+
+## IMPORTANTE:
+
+`podman compose up` No crea POD, 
+en tanto que `podman-compose up` SÌ
+
+Extensión: compose
+
+Paquete extra: podman-compose
+
+
+
+``` bash
+which podman-compose
+# /usr/bin/podman-compose
+```

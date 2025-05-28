@@ -1,0 +1,7 @@
+name: "entorno_default"
+
+services:
+
+  valor_variable:
+    image: busybox:1.37.0-glibc
+    command: echo "La variable PUERTO vale '${PUERTO}'"

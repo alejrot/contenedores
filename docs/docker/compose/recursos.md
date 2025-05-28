@@ -17,3 +17,10 @@ mem_reservation
 
 mem_swappiness
 memswap_limit
+
+
+
+
+
+
+https://github.com/compose-spec/compose-spec/blob/main/05-services.md
